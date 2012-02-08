@@ -2,23 +2,17 @@
 <html>
 <head>
   <title>Jukebox</title>
+  <meta name="description" content="Jukebox">
 
   <%= stylesheet_link_tag    "application" %>
 
   <%= javascript_include_tag "application" %>
-  <script type="text/javascript" charset="utf-8">
-    var jQuery  = require("jqueryify");
-    var exports = this;
-    jQuery(function(){
-      var App = require("index");
-      exports.app = new App({el: $("body")});
-    });
-  </script>
+  <%= yield :templates %>
 
-  <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width; initial-scale=1.0; minimum-scale=1; maximum-scale=1.0; user-scalable=0;"/>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="format-detection" content="telephone=no" />
+  <%= csrf_meta_tags %>
 </head>
 <body>
   <%= yield %>

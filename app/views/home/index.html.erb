@@ -1,3 +1,10 @@
-<header></header>
-<article class="viewport"></article>
-<footer></footer>
+<div id="stage">
+
+  <footer>
+    <%= render "play_controls" %>
+  </footer>
+</div>
+
+<% content_for :templates do %>
+    <script id="artists-template" type="text/x-handlebars-template"><%= render "artists" %></script>
+<% end %>

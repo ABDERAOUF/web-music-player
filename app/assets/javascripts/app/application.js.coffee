@@ -1,3 +1,3 @@
-class App extends Stage.Global
+class App
   constructor: ->
     super
