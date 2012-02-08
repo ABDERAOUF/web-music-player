@@ -12,3 +12,7 @@
     <script id="now-playing-template" type="text/x-handlebars-template"><%= render "now_playing" %></script>
     <script id="current-playlist-template" type="text/x-handlebars-template"><%= render "current_playlist" %></script>
 <% end %>
+
+<% content_for :scripts do %>
+    <script>jQuery(function(){new App({el:$("#stage")})});</script>
+<% end %>
