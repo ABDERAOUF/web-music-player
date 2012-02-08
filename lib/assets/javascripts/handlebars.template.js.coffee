@@ -1,5 +1,4 @@
 #= require handlebars
-#= require handlebars.helpers
 
 Include =
   render: (item) ->
