@@ -20,15 +20,15 @@ class App extends Spine.Controller
            you may lose unsaved changes if you close this page.'''
 
     # Initialise main controllers
-    artistList = new ArtistList(el: $("#artists-page"))
-    albumList  = new AlbumList(el: $("#album-page"))
-    songList   = new SongList(el: $("#song-page"))
+    artistsPage = new ArtistsPage(el: $("#artists-page"))
+    albumsPage  = new AlbumsPage(el: $("#albums-page"))
+    songsPage   = new SongsPage(el: $("#songs-page"))
 
-    new Spine.Manager(artistList,
-      albumList,
-      songList)
+    new Spine.Manager(artistsPage,
+      albumsPage,
+      songsPage)
 
-    artistList.active()
+    artistsPage.active()
 
     Artist.fetch()
     Album.fetch()

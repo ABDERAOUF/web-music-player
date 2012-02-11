@@ -5,11 +5,11 @@
 
 #= require app/models/artist
 
-class ArtistList extends Spine.Controller
+class ArtistsPage extends Spine.Controller
   @extend HandlebarsTemplate
   @tmpl: "artists"
 
   activate: ->
     @render()
 
-window.ArtistList = ArtistList
+window.ArtistsPage = ArtistsPage

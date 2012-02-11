@@ -3,8 +3,8 @@
 
 #= require handlebars.template
 
-class AlbumList extends Spine.Controller
+class AlbumsPage extends Spine.Controller
   @extend HandlebarsTemplate
   @tmpl: "albums"
 
-window.AlbumList = AlbumList
+window.AlbumsPage = AlbumsPage
