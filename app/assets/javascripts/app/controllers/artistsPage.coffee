@@ -19,19 +19,14 @@ class ArtistsPage extends Spine.Controller
   constructor: ->
     super
     Artist.bind "refresh", => @showAll()
-    Spine.bind "show:artists", => @showAll()
-
-  activate: ->
-    @update()
-    @el.addClass("active")
-
-  deactivate: ->
-    @el.removeClass("active")
+    Spine.bind "show:artists", => @active()
+    Spine.bind "show:artists:all", => @showAll()
 
   update: -> @render(artists: @items)
 
   showAll: ->
     @items = Artist.all()
+    @update()
     @active()
 
   showAllAlbums: (e) ->

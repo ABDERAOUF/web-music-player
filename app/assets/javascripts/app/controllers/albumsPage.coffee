@@ -20,24 +20,22 @@ class AlbumsPage extends Spine.Controller
 
   constructor: ->
     super
-    Spine.bind "show:albums", => @showAll()
+    Spine.bind "show:albums", => @active()
+    Spine.bind "show:albums:all", => @showAll()
     Spine.bind "show:albums:byArtist", (artistId) => @showAllByArtist(artistId)
 
-  activate: ->
-    @render(albums: @items, artist: @artist)
-    @el.addClass("active")
-
-  deactivate: ->
-    @el.removeClass("active")
+  update: -> @render(albums: @items, artist: @artist)
 
   showAll: ->
     @artist = null
     @items = Album.all()
+    @update()
     @active()
 
   showAllByArtist: (artistId) ->
     @artist = Artist.find(artistId)
     @items = @artist.albums().all()
+    @update()
     @active()
 
   showAllSongs: (e) ->

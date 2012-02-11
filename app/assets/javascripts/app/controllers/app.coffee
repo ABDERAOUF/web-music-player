@@ -21,16 +21,8 @@ class App extends Spine.Controller
       if Spine.Ajax.pending
         '''Data is still being sent to the server;
            you may lose unsaved changes if you close this page.'''
-     ###
 
-    # Initialise main controllers
-    new Spine.Manager(new ArtistsPage(el: $("#artists-page")),
-      new AlbumsPage(el: $("#albums-page")),
-      new SongsPage(el: $("#songs-page")))
-
-    Spine.trigger("show:artists")
-
-    ###
+    Playlist.fetch()
     Artist.fetch()
     Album.fetch()
     Song.fetch()
@@ -53,5 +45,17 @@ class App extends Spine.Controller
       { id: 1, name: "Michael Jackson" },
       { id: 2, name: "Mumford & Sons" }
     ])
+    Playlist.refresh([
+      { id: 1, name: "Playlist 1", songs: [ 2, 4, 5 ]}
+    ])
+
+    # Initialise main controllers
+    playlist = Playlist.first()
+    new Spine.Manager(
+      new ArtistsPage(el: $("#artists-page"), playlist: playlist),
+      new AlbumsPage(el: $("#albums-page"), playlist: playlist),
+      new SongsPage(el: $("#songs-page"), playlist: playlist))
+
+    Spine.trigger("show:artists:all")
 
 window.App = App

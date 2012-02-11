@@ -15,9 +15,11 @@ Handlebars.registerHelper "all_songs_item", ->
     c = "show-all-by-artist"
     label = "All Songs by #{this.artist.name}"
     count = this.artist.songs().all().length
+    data = " data-artist-id=\"#{this.artist.id}\""
   else
     c = "show-all"
     label = "All Songs"
     count = Song.count()
+    data = ""
 
-  "<li class=\"#{c}\">#{label}<span class=\"count\">#{count} Songs</span></li>"
+  "<li class=\"#{c}\"#{data}>#{label}<span class=\"count\">#{count} Songs</span></li>"

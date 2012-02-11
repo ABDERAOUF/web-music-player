@@ -1,11 +1,12 @@
 <header>
     <h1>{{song_page_title}}</h1>
     <a href="#">Albums</a>
-    <a href="#">Now Playing</a>
+    <a href="#" class="now-playing">Now Playing</a>
 </header>
 
 <div data-role="content">
     <ul class="song-list">
+        {{{add_to_playlist_item}}}
         {{#each songs}}
         {{{list_divider}}}
         <li class="song" data-song-id="{{id}}">
