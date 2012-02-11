@@ -13,6 +13,7 @@ Include =
 Extend =
   build: ->
     element = document.getElementById "#{@tmpl}-template"
+    throw "Template ##{@tmpl}-template not found" unless element
     source = element.innerHTML
     @tmplFunc = Handlebars.compile source
     @

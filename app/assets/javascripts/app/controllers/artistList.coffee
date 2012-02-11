@@ -3,8 +3,13 @@
 
 #= require handlebars.template
 
+#= require app/models/artist
+
 class ArtistList extends Spine.Controller
   @extend HandlebarsTemplate
-  @tmpl: "artist"
+  @tmpl: "artists"
+
+  activate: ->
+    @render()
 
 window.ArtistList = ArtistList

@@ -1,8 +1,10 @@
 #= require jquery
 #= require spine
+#= require spine/manager
 #= require spine/route
 
-#= require app/controllers/artistList
+#= require_directory .
+#= require_directory ../models
 
 class App extends Spine.Controller
   constructor: ->
@@ -18,10 +20,18 @@ class App extends Spine.Controller
            you may lose unsaved changes if you close this page.'''
 
     # Initialise main controllers
-    new ArtistList
-    #new AlbumList
-    #new SongList
+    artistList = new ArtistList(el: $("#artists-page"))
+    albumList  = new AlbumList(el: $("#album-page"))
+    songList   = new SongList(el: $("#song-page"))
+
+    new Spine.Manager(artistList,
+      albumList,
+      songList)
+
+    artistList.active()
 
     Artist.fetch()
+    Album.fetch()
+    Song.fetch()
 
 window.App = App
