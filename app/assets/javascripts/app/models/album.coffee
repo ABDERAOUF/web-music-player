@@ -4,6 +4,7 @@
 class Album extends Spine.Model
   @configure "Album",
     "name",
+    "sort_name",
     "release_date"
 
   @belongsTo "artist", "Artist"

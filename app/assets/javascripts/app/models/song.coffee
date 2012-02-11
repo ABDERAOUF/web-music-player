@@ -3,7 +3,8 @@
 
 class Song extends Spine.Model
   @configure "Song",
-    "name"
+    "name",
+    "sort_name"
 
   @belongsTo "album", "Album"
 

@@ -13,25 +13,32 @@ class App extends Spine.Controller
     #Spine.bind "rendered", (c) -> c.el.initRoles()
     #@el.initRoles()
 
-    window.onbeforeunload = ->
-      # TODO: Get from resource
-      if Spine.Ajax.pending
-        '''Data is still being sent to the server;
-           you may lose unsaved changes if you close this page.'''
+    # window.onbeforeunload = ->
+    #   # TODO: Get from resource
+    #   if Spine.Ajax.pending
+    #     '''Data is still being sent to the server;
+    #        you may lose unsaved changes if you close this page.'''
 
     # Initialise main controllers
-    artistsPage = new ArtistsPage(el: $("#artists-page"))
-    albumsPage  = new AlbumsPage(el: $("#albums-page"))
-    songsPage   = new SongsPage(el: $("#songs-page"))
+    new Spine.Manager(new ArtistsPage(el: $("#artists-page")),
+      new AlbumsPage(el: $("#albums-page")),
+      new SongsPage(el: $("#songs-page")))
 
-    new Spine.Manager(artistsPage,
-      albumsPage,
-      songsPage)
+    Spine.trigger("show:artists")
 
-    artistsPage.active()
+    # Artist.fetch()
+    # Album.fetch()
+    # Song.fetch()
 
-    Artist.fetch()
-    Album.fetch()
-    Song.fetch()
+    # TEMP: Temp data, bootstrapped
+    Artist.refresh([
+      { id: 1, name: "Michael Jackson" },
+      { id: 2, name: "Mumford & Sons" }
+    ])
+    Album.refresh([
+      { id: 1, name: "Bad", artist_id: 1 },
+      { id: 2, name: "Thriller", artist_id: 1 }
+      { id: 3, name: "Sigh No More", artist_id: 2 }
+    ])
 
 window.App = App

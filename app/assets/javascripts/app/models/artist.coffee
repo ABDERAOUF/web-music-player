@@ -3,7 +3,8 @@
 
 class Artist extends Spine.Model
   @configure "Artist",
-    "name"
+    "name",
+    "sort_name"
 
   @hasMany "albums", "Album"
 

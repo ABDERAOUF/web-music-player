@@ -1,0 +1,18 @@
+<header>
+    <h1>Artists</h1>
+    <a href="#">Now Playing</a>
+</header>
+
+<div data-role="content">
+    <ul class="artist-list">
+        <li class="show-all">All Albums<span class="count">300 Albums, 14,004 Songs</span></li>
+        {{#each artists}}
+        <!-- <li data-role="divider">M</li> -->
+        <li class="artist" data-artist-id="{{id}}">
+            <span class="album-cover"></span>
+            <span class="artist-name">{{name}}</span>
+            <span class="count">8 Albums, 144 Songs</span>
+        </li>
+        {{/each}}
+    </ul>
+</div>
