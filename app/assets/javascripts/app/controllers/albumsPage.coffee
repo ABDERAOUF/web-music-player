@@ -14,6 +14,8 @@ class AlbumsPage extends Spine.Controller
     ".album-list": "$albumList"
 
   events:
+    "click header [data-nav='artists']": "goToArtists"
+    "click header [data-nav='now-playing']": "goToNowPlaying"
     "click .album-list .show-all": "showAllSongs"
     "click .album-list .show-all-by-artist": "showSongsByArtist"
     "click .album-list .album": "showSongsByAlbum"
@@ -48,5 +50,8 @@ class AlbumsPage extends Spine.Controller
   showSongsByAlbum: (e) ->
     albumId = $(e.currentTarget).data("album-id")
     Spine.trigger "show:songs:byAlbum", albumId
+
+  goToArtists: -> Spine.trigger "show:artists"
+  goToNowPlaying: -> Spine.trigger "show:now-playing"
 
 window.AlbumsPage = AlbumsPage

@@ -15,6 +15,8 @@ class SongsPage extends Spine.Controller
     ".song-list": "$songList"
 
   events:
+    "click header [data-nav='albums']": "goToAlbums"
+    "click header [data-nav='now-playing']": "goToNowPlaying"
     "click .song-list .song": "addSongToPlaylist"
     "click .song-list .add-whole-album": "addAlbumToPlaylist"
     "click .song-list .add-whole-artist": "addArtistToPlaylist"
@@ -58,5 +60,8 @@ class SongsPage extends Spine.Controller
   addArtistToPlaylist: (e) ->
     artistId = $(e.currentTarget).data("artist-id")
     Spine.trigger "playlist:add:artist", artistId
+
+  goToAlbums: -> Spine.trigger "show:albums"
+  goToNowPlaying: -> Spine.trigger "show:now-playing"
 
 window.SongsPage = SongsPage
