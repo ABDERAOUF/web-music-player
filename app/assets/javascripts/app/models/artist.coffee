@@ -7,5 +7,6 @@ class Artist extends Spine.Model
     "sort_name"
 
   @hasMany "albums", "Album"
+  @hasMany "songs", "Song"
 
 window.Artist = Artist

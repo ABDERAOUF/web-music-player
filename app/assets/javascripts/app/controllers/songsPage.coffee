@@ -3,6 +3,10 @@
 
 #= require handlebars.template
 
+#= require app/models/artist
+#= require app/models/album
+#= require app/models/song
+
 class SongsPage extends Spine.Controller
   @extend HandlebarsTemplate
   @tmpl: "songs"
@@ -18,28 +22,29 @@ class SongsPage extends Spine.Controller
 
     Spine.bind "show:songs", => @showAll()
     Spine.bind "show:songs:byAlbum", (albumId) => @showAllByAlbum(albumId)
-    Spine.bind "show:songs:byArtist", (artistId) => @showallByArtist(artistId)
+    Spine.bind "show:songs:byArtist", (artistId) => @showAllByArtist(artistId)
 
   activate: ->
-    @update()
+    @render(songs: @items, filter: @filter)
     @el.addClass("active")
 
   deactivate: ->
     @el.removeClass("active")
 
-  update: -> @render(songs: @items)
-
   showAll: ->
+    @filter = null
     @items = Song.all()
     @active()
 
   showAllByArtist: (artistId) ->
-    @items = Song.findAllByAttribute("artist_id", artistId)
-    @activate()
+    @filter = Artist.find(artistId)
+    @items = @filter.songs().all()
+    @active()
 
   showAllByAlbum: (albumId) ->
-    @items = Song.findAllByAttribute("album_id", albumId)
-    @activate()
+    @filter = Album.find(albumId)
+    @items = @filter.songs().all()
+    @active()
 
 
 window.SongsPage = SongsPage

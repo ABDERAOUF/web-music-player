@@ -1,19 +1,18 @@
 <header>
-    <h1>All Albums</h1>
+    <h1>{{album_page_title}}</h1>
     <a href="#">Artists</a>
     <a href="#">Now Playing</a>
 </header>
 
 <div data-role="content">
     <ul class="album-list">
-        <li class="show-all">All Songs<span class="count">14,004 Songs</span></li>
-        <li class="show-all-by-artist">All Songs by Artist<span class="count">14,004 Songs</span></li>
+        {{{all_songs_item}}}
         {{#each albums}}
-        <!-- <li data-role="divider">M</li> -->
+        {{{list_divider}}}
         <li class="album" data-album-id="{{id}}">
             <span class="album-cover"></span>
             <span class="album-name">{{name}}</span>
-            <span class="artist-name">{{artist.name}}</span>
+            <span class="artist-name">{{artist "name"}}</span>
             <span class="rating">{{rating}}</span>
         </li>
         {{/each}}

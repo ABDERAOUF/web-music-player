@@ -6,6 +6,7 @@ class Song extends Spine.Model
     "name",
     "sort_name"
 
+  @belongsTo "artist", "Artist"
   @belongsTo "album", "Album"
 
 window.Song = Song

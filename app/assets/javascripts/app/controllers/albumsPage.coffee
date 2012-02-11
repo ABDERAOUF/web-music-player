@@ -3,6 +3,7 @@
 
 #= require handlebars.template
 
+#= require app/models/artist
 #= require app/models/album
 
 class AlbumsPage extends Spine.Controller
@@ -23,20 +24,20 @@ class AlbumsPage extends Spine.Controller
     Spine.bind "show:albums:byArtist", (artistId) => @showAllByArtist(artistId)
 
   activate: ->
-    @update()
+    @render(albums: @items, artist: @artist)
     @el.addClass("active")
 
   deactivate: ->
     @el.removeClass("active")
 
-  update: -> @render(albums: @items)
-
   showAll: ->
+    @artist = null
     @items = Album.all()
-    @active
+    @active()
 
   showAllByArtist: (artistId) ->
-    @items = Album.findAllByAttribute("artist_id", artistId)
+    @artist = Artist.find(artistId)
+    @items = @artist.albums().all()
     @active()
 
   showAllSongs: (e) ->
