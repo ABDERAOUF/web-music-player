@@ -13,24 +13,32 @@ class ArtistsPage extends Spine.Controller
     ".artist-list": "$artistList"
 
   events:
-    "click .artist-list .show-all": "showAll"
-    "click .artist-list .artist": "showAlbums"
+    "click .artist-list .show-all": "showAllAlbums"
+    "click .artist-list .artist": "showAlbumsByArtist"
 
   constructor: ->
     super
-    Artist.bind "refresh", => @update()
-    Spine.bind "show:artists", => @active()
+    Artist.bind "refresh", => @showAll()
+    Spine.bind "show:artists", => @showAll()
 
   activate: ->
     @update()
+    @el.addClass("active")
 
-  update: ->
-    @render(artists: Artist.all())
+  deactivate: ->
+    @el.removeClass("active")
 
-  showAll: -> Spine.trigger "show:albums"
+  update: -> @render(artists: @items)
 
-  showAlbums: (e) ->
+  showAll: ->
+    @items = Artist.all()
+    @active()
+
+  showAllAlbums: (e) ->
+    Spine.trigger "show:albums"
+
+  showAlbumsByArtist: (e) ->
     artistId = $(e.currentTarget).data("artist-id")
-    Spine.trigger "show:albums", artistId
+    Spine.trigger "show:albums:byArtist", artistId
 
 window.ArtistsPage = ArtistsPage
