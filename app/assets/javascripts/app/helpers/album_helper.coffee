@@ -20,4 +20,4 @@ Handlebars.registerHelper "all_songs_item", ->
     label = "All Songs"
     count = Song.count()
 
-  Handlebars.SafeString "<li class=\"#{c}\">#{label}<span class=\"count\">#{count} Songs</span></li>"
+  "<li class=\"#{c}\">#{label}<span class=\"count\">#{count} Songs</span></li>"
