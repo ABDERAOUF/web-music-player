@@ -54,7 +54,8 @@ class App extends Spine.Controller
     new Spine.Manager(
       new ArtistsPage(el: $("#artists-page"), playlist: playlist),
       new AlbumsPage(el: $("#albums-page"), playlist: playlist),
-      new SongsPage(el: $("#songs-page"), playlist: playlist))
+      new SongsPage(el: $("#songs-page"), playlist: playlist),
+      new NowPlaying(el: $("#now-playing-page"), playlist: playlist))
 
     Spine.trigger("show:artists:all")
 
