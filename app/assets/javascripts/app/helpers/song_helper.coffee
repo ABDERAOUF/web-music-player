@@ -24,4 +24,4 @@ Handlebars.registerHelper "add_to_playlist_item", ->
   else
     return ""
 
-  "<li class=\"#{c}\"#{data}>#{label}</li>"
+  "<li class=\"ui-content-list-item #{c}\"#{data}>#{label}</li>"

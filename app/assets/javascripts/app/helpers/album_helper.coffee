@@ -22,4 +22,4 @@ Handlebars.registerHelper "all_songs_item", ->
     count = Song.count()
     data = ""
 
-  "<li class=\"#{c}\"#{data}>#{label}<span class=\"count\">#{count} Songs</span></li>"
+  "<li class=\"ui-content-list-item #{c}\"#{data}><p class=\"caption\">#{label}</p><p class=\"count\">#{count} Songs</p></li>"

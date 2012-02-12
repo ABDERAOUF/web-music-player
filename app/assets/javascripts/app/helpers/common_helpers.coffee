@@ -9,4 +9,4 @@ Handlebars.registerHelper "album", (prop) -> this.album()[prop]
 
 Handlebars.registerHelper "list_divider", ->
   # TODO: Figure out if this item is the same as the first in the group
-  "<li data-role=\"divider\">-</li>"
+  "<li data-role=\"divider\" class=\"ui-content-list-divider\">A</li>"

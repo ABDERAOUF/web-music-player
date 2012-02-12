@@ -1,20 +1,26 @@
 <header>
     <h1>{{song_page_title}}</h1>
-    <a href="#" data-nav="albums" data-id="">Albums</a>
-    <a href="#" data-nav="now-playing">Now Playing</a>
+    <a href="#"
+        data-role="prev-button"
+        data-nav="albums"
+        data-id=""
+        class="ui-button">Albums</a>
+    <a href="#"
+        data-role="next-button"
+        data-nav="now-playing"
+        class="ui-button">Now Playing</a>
 </header>
 
 <div data-role="content">
-    <ul class="song-list">
+    <ul class="ui-content-list double-line song-list">
         {{{add_to_playlist_item}}}
         {{#each songs}}
         {{{list_divider}}}
-        <li class="song" data-song-id="{{id}}">
-            <span class="album-cover"></span>
-            <span class="song-name">{{name}}</span>
-            <span class="artist-name">{{artist "name"}}</span>
-            <span class="album-name">{{album "name"}}</span>
-            <span class="rating">3</span>
+        <li class="ui-content-list-item song" data-song-id="{{id}}">
+            <p class="thumbnail album-cover"></p>
+            <p class="caption song-name">{{name}}</p>
+            <p class="descriptive artist-album">{{artist "name"}} - {{album "name"}}</p>
+            <p class="rating">3</p>
         </li>
         {{/each}}
     </ul>

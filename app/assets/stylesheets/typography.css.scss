@@ -1,0 +1,16 @@
+@import "theme";
+
+html, body {
+    font: normal 100%/1.2 ff-enzo-web, sans-serif;
+    font-size: 15px;
+    color: $textColour;
+}
+input, textarea, button { font-family: ff-enzo-web, sans-serif; }
+
+a {
+    color: $linkColour;
+    text-decoration: none;
+
+    &:visited { color: $linkColour; }
+    &:hover { color: $linkHoverColour; }
+}
