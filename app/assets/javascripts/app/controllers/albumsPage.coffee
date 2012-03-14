@@ -10,6 +10,8 @@ class AlbumsPage extends Spine.Controller
   @extend HandlebarsTemplate
   @tmpl: "albums"
 
+  el: "[data-el='albums-page']"
+
   elements:
     ".album-list": "$albumList"
 

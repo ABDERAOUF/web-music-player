@@ -7,6 +7,8 @@ class NowPlayingPage extends Spine.Controller
   @extend HandlebarsTemplate
   @tmpl: "now-playing"
 
+  el: "[data-el='now-playing']"
+
   events:
     "click nav [data-nav='artists']": "goToArtists"
 

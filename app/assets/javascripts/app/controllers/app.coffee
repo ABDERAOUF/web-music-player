@@ -64,11 +64,11 @@ class App extends Spine.Controller
     # Initialise main controllers
     playlist = Playlist.first()
     new Spine.Manager(
-      new ArtistsPage(el: $("#artists-page"), playlist: playlist),
-      new AlbumsPage(el: $("#albums-page"), playlist: playlist),
-      new SongsPage(el: $("#songs-page"), playlist: playlist),
-      new NowPlayingPage(el: $("#now-playing-page"), playlist: playlist),
-      new PlaylistPage(el: $("#playlist-page"), playlist: playlist))
+      new ArtistsPage(playlist: playlist),
+      new AlbumsPage(playlist: playlist),
+      new SongsPage(playlist: playlist),
+      new NowPlayingPage(playlist: playlist),
+      new PlaylistPage(playlist: playlist))
 
     Spine.trigger("show:artists:all")
 

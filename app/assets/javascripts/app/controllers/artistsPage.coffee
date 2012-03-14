@@ -9,6 +9,8 @@ class ArtistsPage extends Spine.Controller
   @extend HandlebarsTemplate
   @tmpl: "artists"
 
+  el: "[data-el='artists-page']"
+
   elements:
     ".artist-list": "$artistList"
 

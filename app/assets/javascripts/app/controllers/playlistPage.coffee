@@ -7,4 +7,6 @@
 
 class PlaylistPage extends Spine.Controller
 
+  el: "[data-el='playlist-page']"
+
 window.PlaylistPage = PlaylistPage
