@@ -22,11 +22,7 @@ group :development do
   gem 'rspec-rails'
   gem 'faker'
   gem 'jasmine'
-  gem 'guard'
-  gem 'guard-jasmine'
   gem 'jasminerice'
-  gem 'ruby_gntp'
-  gem 'win32console'
 end
 
 group :test do
@@ -34,9 +30,5 @@ group :test do
   gem 'webrat'
   gem 'factory_girl_rails'
   gem 'jasmine'
-  gem 'guard'
-  gem 'guard-jasmine'
   gem 'jasminerice'
-  gem 'ruby_gntp'
-  gem 'win32console'
 end
