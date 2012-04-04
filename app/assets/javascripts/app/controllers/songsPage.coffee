@@ -53,7 +53,7 @@ class SongsPage extends Spine.Controller
 
   addSongToPlaylist: (e) ->
     songId = $(e.currentTarget).data("song-id")
-    @playlist.addSong(songId)
+    @playlist.add(songId)
 
   addAlbumToPlaylist: (e) ->
     albumId = $(e.currentTarget).data("album-id")

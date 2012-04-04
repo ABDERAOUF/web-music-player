@@ -61,14 +61,18 @@ class App extends Spine.Controller
       { id: 1, name: "Playlist 1", songs: [ 2, 4, 5 ] }
     ])
 
+    audio = new Html5AudioControl
+
     # Initialise main controllers
     playlist = Playlist.first()
     new Spine.Manager(
       new ArtistsPage(playlist: playlist),
       new AlbumsPage(playlist: playlist),
       new SongsPage(playlist: playlist),
-      new NowPlayingPage(playlist: playlist),
-      new PlaylistPage(playlist: playlist))
+      new NowPlayingPage(playlist: playlist, audio: audio),
+      new PlaylistPage(playlist: playlist, audio: audio))
+
+    new PlayControls(audio: audio)
 
     Spine.trigger("show:artists:all")
 
