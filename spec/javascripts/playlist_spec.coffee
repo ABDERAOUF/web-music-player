@@ -1,9 +1,10 @@
 #= require app/models/playlist
 
 describe "Playlist", ->
+  playlist = null
+
+  beforeEach ->
+    playlist = new Playlist
 
   it "should respond to 'currentSong", ->
-    expect(Playlist.currentSong).not.toBeUndefined()
-
-  it "should be happy", ->
-    expect(false).toBeFalsy()
+    expect(playlist.currentSong).not.toBeUndefined()

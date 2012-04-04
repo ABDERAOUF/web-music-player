@@ -53,15 +53,15 @@ class SongsPage extends Spine.Controller
 
   addSongToPlaylist: (e) ->
     songId = $(e.currentTarget).data("song-id")
-    Spine.trigger "playlist:add:song", songId
+    @playlist.addSong(songId)
 
   addAlbumToPlaylist: (e) ->
     albumId = $(e.currentTarget).data("album-id")
-    Spine.trigger "playlist:add:album", albumId
+    @playlist.addAlbum(albumId)
 
   addArtistToPlaylist: (e) ->
     artistId = $(e.currentTarget).data("artist-id")
-    Spine.trigger "playlist:add:artist", artistId
+    @playlist.addArtist(artistId)
 
   goToAlbums: -> Spine.trigger "show:albums"
   goToNowPlaying: -> Spine.trigger "show:now-playing"

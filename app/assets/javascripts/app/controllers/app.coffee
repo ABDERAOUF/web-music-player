@@ -58,7 +58,7 @@ class App extends Spine.Controller
       { id: 14, name: "Garbage" }
     ])
     Playlist.refresh([
-      { id: 1, name: "Playlist 1", songs: [ 2, 4, 5 ]}
+      { id: 1, name: "Playlist 1", songs: [ 2, 4, 5 ] }
     ])
 
     # Initialise main controllers

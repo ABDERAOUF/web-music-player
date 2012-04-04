@@ -7,7 +7,7 @@ class NowPlayingPage extends Spine.Controller
   @extend HandlebarsTemplate
   @tmpl: "now-playing"
 
-  el: "[data-el='now-playing']"
+  el: "[data-el='now-playing-page']"
 
   events:
     "click nav [data-nav='artists']": "goToArtists"
@@ -15,7 +15,7 @@ class NowPlayingPage extends Spine.Controller
   constructor: ->
     super
     currentSong = @playlist.currentSong()
-    @render(song: currentSong, album: currentSong.album(), artist: currentSong.artist())
+    @render song: currentSong, album: currentSong.album(), artist: currentSong.artist()
 
     Spine.bind "show:now-playing", => @active()
     @playlist.bind "next-song", (songId) =>

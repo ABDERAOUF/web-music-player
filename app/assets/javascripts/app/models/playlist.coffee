@@ -6,9 +6,17 @@ class Playlist extends Spine.Model
     "name",
     "songs"
 
-  addSong: (songId) -> songs.push(songId)
+  addSong: (songId) ->
+    @songs.push(songId)
+    @trigger "song.add"
+
   addAlbum: (albumId) ->
+    album = Album.find albumId
+    @trigger "album.add"
+
   addArtist: (artistId) ->
+    artist = Artist.find artistId
+    @trigger "artist.add"
 
   currentSong: -> if @songs and @songs[0] then Song.find(@songs[0]) else null
 
