@@ -23,6 +23,13 @@ describe "Html5AudioControl", ->
       audioControl.play()
       expect(handler.play).toHaveBeenCalled()
 
+    it "should set the 'src' if it is null", ->
+      audioControl.el.attr("src", "")
+
+    it "should get the next song if 'currentSong' is null", ->
+      audioControl.currentSong = null
+
+
   describe "pause", ->
 
     it "should 'pause' the audio control", ->

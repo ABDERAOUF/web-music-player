@@ -9,6 +9,8 @@
 #= require_directory ../models
 
 class App extends Spine.Controller
+  el: "[data-el='stage']"
+
   constructor: ->
     super
 
@@ -61,10 +63,13 @@ class App extends Spine.Controller
       { id: 1, name: "Playlist 1", songs: [ 2, 4, 5 ] }
     ])
 
+    playlist = Playlist.first()
+
     audio = new Html5AudioControl
 
+    audioFeeder = new AudioFeeder(playlist: playlist, audio: audio)
+
     # Initialise main controllers
-    playlist = Playlist.first()
     new Spine.Manager(
       new ArtistsPage(playlist: playlist),
       new AlbumsPage(playlist: playlist),
@@ -72,6 +77,7 @@ class App extends Spine.Controller
       new NowPlayingPage(playlist: playlist, audio: audio),
       new PlaylistPage(playlist: playlist, audio: audio))
 
+    # Initialise component controllers
     new PlayControls(audio: audio)
 
     Spine.trigger("show:artists:all")

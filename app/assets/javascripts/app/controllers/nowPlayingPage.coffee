@@ -14,9 +14,6 @@ class NowPlayingPage extends Spine.Controller
 
   constructor: ->
     super
-    currentSong = @audio.currentSong
-
-    if currentSong then @render song: currentSong, album: currentSong.album(), artist: currentSong.artist()
 
     Spine.bind "show:now-playing", => @active()
     @playlist.bind "next-song", (songId) =>
@@ -24,5 +21,10 @@ class NowPlayingPage extends Spine.Controller
       @render(song: song, album: song.album(), artist: song.album().artist())
 
   goToArtists: -> Spine.trigger "show:artists"
+
+  activated: ->
+    @el.addClass "active"
+    currentSong = @audio.currentSong
+    if currentSong then @render song: currentSong, album: currentSong.album(), artist: currentSong.artist()
 
 window.NowPlayingPage = NowPlayingPage

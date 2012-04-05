@@ -1,6 +1,9 @@
 #= require jquery
 #= require spine
 
+#= require app/models/playlist
+#= require app/models/song
+
 class Html5AudioControl extends Spine.Controller
   tag: "audio"
 
@@ -23,5 +26,9 @@ class Html5AudioControl extends Spine.Controller
   stop: ->
     @audio.pause()
     @trigger "stop"
+
+  setSong: (song) ->
+    @currentSong = song
+    @el.attr "src", song.url
 
 window.Html5AudioControl = Html5AudioControl

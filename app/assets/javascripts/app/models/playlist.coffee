@@ -17,10 +17,12 @@ class Playlist extends Spine.Model
   addAlbum: (albumId) ->
     album = Album.find(albumId)
     @trigger "album.add"
+    this
 
   addArtist: (artistId) ->
     artist = Artist.find(artistId)
     @trigger "artist.add"
+    this
 
   nextSong: ->
     if @songs?.length
