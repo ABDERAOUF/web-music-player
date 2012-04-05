@@ -14,8 +14,9 @@ class NowPlayingPage extends Spine.Controller
 
   constructor: ->
     super
-    currentSong = @playlist.currentSong()
-    @render song: currentSong, album: currentSong.album(), artist: currentSong.artist()
+    currentSong = @audio.currentSong
+
+    if currentSong then @render song: currentSong, album: currentSong.album(), artist: currentSong.artist()
 
     Spine.bind "show:now-playing", => @active()
     @playlist.bind "next-song", (songId) =>

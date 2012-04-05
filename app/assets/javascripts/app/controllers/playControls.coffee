@@ -16,4 +16,4 @@ class PlayControls extends Spine.Controller
   play:  -> @audio.play()
   pause: -> @audio.pause()
 
-window.AutioControls = PlayControls
+window.PlayControls = PlayControls
