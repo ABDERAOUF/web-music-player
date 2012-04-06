@@ -14,7 +14,10 @@ class AudioFeeder extends Spine.Module
     @audioControl.setSong @playlist.nextSong()
 
   nextSong: ->
-    song = @playlist.nextSong
-    @audioControl.setSong song
+    song = @playlist.nextSong()
+
+    if song
+      @audioControl.setSong song
+      @audioControl.play()
 
 window.AudioFeeder = AudioFeeder
