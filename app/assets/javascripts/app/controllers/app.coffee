@@ -89,6 +89,6 @@ class App extends Spine.Controller
 
     audioFeeder = new AudioFeeder(playlist, audioControl)
 
-    Spine.trigger("show:artists:all")
+    Spine.Route.setup()
 
 window.App = App

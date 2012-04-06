@@ -17,8 +17,6 @@ class SongsPage extends Spine.Controller
     ".song-list": "$songList"
 
   events:
-    "click header [data-nav='albums']": "goToAlbums"
-    "click header [data-nav='now-playing']": "goToNowPlaying"
     "click .song-list .song": "addSongToPlaylist"
     "click .song-list .add-whole-album": "addAlbumToPlaylist"
     "click .song-list .add-whole-artist": "addArtistToPlaylist"
@@ -26,10 +24,11 @@ class SongsPage extends Spine.Controller
   constructor: ->
     super
 
-    Spine.bind "show:songs", => @active()
-    Spine.bind "show:songs:all", => @showAll()
-    Spine.bind "show:songs:byAlbum", (albumId) => @showAllByAlbum(albumId)
-    Spine.bind "show:songs:byArtist", (artistId) => @showAllByArtist(artistId)
+    @routes
+      "/songs/artist/:artistId": (artistId) => @showAllByArtist(artistId)
+      "/songs/album/:albumId": (albumId) => @showAllByAlbum(albumId)
+      "/songs": => @showAll()
+
 
   update: -> @render(songs: @items, filter: @filter)
 
@@ -62,8 +61,5 @@ class SongsPage extends Spine.Controller
   addArtistToPlaylist: (e) ->
     artistId = $(e.currentTarget).data("artist-id")
     @playlist.addArtist(artistId)
-
-  goToAlbums: -> Spine.trigger "show:albums"
-  goToNowPlaying: -> Spine.trigger "show:now-playing"
 
 window.SongsPage = SongsPage

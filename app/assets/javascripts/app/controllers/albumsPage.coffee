@@ -16,17 +16,16 @@ class AlbumsPage extends Spine.Controller
     ".album-list": "$albumList"
 
   events:
-    "click header [data-nav='artists']": "goToArtists"
-    "click header [data-nav='now-playing']": "goToNowPlaying"
     "click .album-list .show-all": "showAllSongs"
     "click .album-list .show-all-by-artist": "showSongsByArtist"
     "click .album-list .album": "showSongsByAlbum"
 
   constructor: ->
     super
-    Spine.bind "show:albums", => @active()
-    Spine.bind "show:albums:all", => @showAll()
-    Spine.bind "show:albums:byArtist", (artistId) => @showAllByArtist(artistId)
+
+    @routes
+      "/albums/artist/:artitsId": (artistId) => @showAllByArtist(artistId)
+      "/albums": => @showAll()
 
   update: -> @render(albums: @items, artist: @artist)
 
@@ -43,17 +42,14 @@ class AlbumsPage extends Spine.Controller
     @active()
 
   showAllSongs: (e) ->
-    Spine.trigger "show:songs"
+    @navigate "/songs"
 
   showSongsByArtist: (e) ->
     artistId = $(e.currentTarget).data("artist-id")
-    Spine.trigger "show:songs:byArtist", artistId
+    @navigate "/songs/artist/#{artistId}"
 
   showSongsByAlbum: (e) ->
     albumId = $(e.currentTarget).data("album-id")
-    Spine.trigger "show:songs:byAlbum", albumId
-
-  goToArtists: -> Spine.trigger "show:artists"
-  goToNowPlaying: -> Spine.trigger "show:now-playing"
+    @navigate "/songs/album/#{albumId}"
 
 window.AlbumsPage = AlbumsPage

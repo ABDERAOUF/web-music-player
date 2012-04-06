@@ -15,15 +15,16 @@ class ArtistsPage extends Spine.Controller
     ".artist-list": "$artistList"
 
   events:
-    "click header [data-nav='now-playing']": "goToNowPlaying"
     "click .artist-list .show-all": "showAllAlbums"
     "click .artist-list .artist": "showAlbumsByArtist"
 
   constructor: ->
     super
     Artist.bind "refresh", => @showAll()
-    Spine.bind "show:artists", => @active()
-    Spine.bind "show:artists:all", => @showAll()
+
+    @routes
+      "/artists": => @showAll()
+      "": => @showAll()
 
   update: -> @render(artists: @items)
 
@@ -33,12 +34,10 @@ class ArtistsPage extends Spine.Controller
     @active()
 
   showAllAlbums: (e) ->
-    Spine.trigger "show:albums"
+    @navigate "/albums"
 
   showAlbumsByArtist: (e) ->
     artistId = $(e.currentTarget).data("artist-id")
-    Spine.trigger "show:albums:byArtist", artistId
-
-  goToNowPlaying: -> Spine.trigger "show:now-playing"
+    @navigate "/albums/artist/#{artistId}"
 
 window.ArtistsPage = ArtistsPage

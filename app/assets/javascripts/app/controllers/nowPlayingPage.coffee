@@ -20,9 +20,11 @@ class NowPlayingPage extends Spine.Controller
 
     @audioControl.bind "songchange", @proxy(@update)
     @audioControl.bind "timeupdate", @proxy(@updateTimeRemaining)
-    Spine.bind "show:now-playing", => @active()
 
-  goToArtists: -> Spine.trigger "show:artists"
+    @routes
+      "/now-playing": => @active()
+
+  goToArtists: -> @navigate "/artists"
 
   activated: ->
     @el.addClass "active"
