@@ -13,7 +13,7 @@ class PlayControls extends Spine.Controller
   constructor: ->
     super
 
-  play:  -> @audio.play()
-  pause: -> @audio.pause()
+  play:  -> @audioControl.play()
+  pause: -> @audioControl.pause()
 
 window.PlayControls = PlayControls

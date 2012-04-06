@@ -7,14 +7,14 @@ describe "Html5AudioControl", ->
     audioControl = new Html5AudioControl
 
   it "should have an 'audio' element", ->
-    expect(audioControl.el.get(0).nodeName.toLowerCase()).toBe("audio")
+    expect(audioControl.el.get(0).nodeName.toLowerCase()).toBe("audioControl")
 
   describe "play", ->
 
     it "should 'play' the audio control", ->
-      spyOn audioControl.audio, "play"
+      spyOn audioControl.audioControl, "play"
       audioControl.play()
-      expect(audioControl.audio.play).toHaveBeenCalled()
+      expect(audioControl.audioControl.play).toHaveBeenCalled()
 
     it "should trigger 'play'", ->
       handler = play: ->
@@ -33,9 +33,9 @@ describe "Html5AudioControl", ->
   describe "pause", ->
 
     it "should 'pause' the audio control", ->
-      spyOn audioControl.audio, "pause"
+      spyOn audioControl.audioControl, "pause"
       audioControl.pause()
-      expect(audioControl.audio.pause).toHaveBeenCalled()
+      expect(audioControl.audioControl.pause).toHaveBeenCalled()
 
     it "should trigger 'pause'", ->
       handler = pause: ->
@@ -47,9 +47,9 @@ describe "Html5AudioControl", ->
   describe "stop", ->
 
     it "should 'pause' the audio control", ->
-      spyOn audioControl.audio, "pause"
+      spyOn audioControl.audioControl, "pause"
       audioControl.pause()
-      expect(audioControl.audio.pause).toHaveBeenCalled()
+      expect(audioControl.audioControl.pause).toHaveBeenCalled()
 
     it "should trigger 'stop'", ->
       handler = stop: ->

@@ -33,7 +33,7 @@ class App extends Spine.Controller
     # TEMP: Temp data, bootstrapped
     Song.refresh([
       { id: 1, name: "Bad", album_id: 1, artist_id: 1 }
-      { id: 2, name: "The Way You Make Me Feel", album_id: 1, artist_id: 1 }
+      { id: 2, name: "The Way You Make Me Feel", album_id: 1, artist_id: 1, url: "/music/song.mp3" }
       { id: 3, name: "Thriller", album_id: 2, artist_id: 1 }
       { id: 4, name: "Sigh No More", album_id: 3, artist_id: 2 }
       { id: 5, name: "The Cave", album_id: 3, artist_id: 2 }
@@ -64,21 +64,20 @@ class App extends Spine.Controller
     ])
 
     playlist = Playlist.first()
-
-    audio = new Html5AudioControl
-
-    audioFeeder = new AudioFeeder(playlist: playlist, audio: audio)
+    audioControl = new Html5AudioControl()
 
     # Initialise main controllers
     new Spine.Manager(
       new ArtistsPage(playlist: playlist),
       new AlbumsPage(playlist: playlist),
       new SongsPage(playlist: playlist),
-      new NowPlayingPage(playlist: playlist, audio: audio),
-      new PlaylistPage(playlist: playlist, audio: audio))
+      new NowPlayingPage(audioControl: audioControl),
+      new PlaylistPage(playlist: playlist, audioControl: audioControl))
 
     # Initialise component controllers
-    new PlayControls(audio: audio)
+    new PlayControls(audioControl: audioControl)
+
+    audioFeeder = new AudioFeeder(playlist, audioControl)
 
     Spine.trigger("show:artists:all")
 

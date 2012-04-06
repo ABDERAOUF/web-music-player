@@ -3,13 +3,18 @@
 class AudioFeeder extends Spine.Module
   #@extend Events
 
-  constructor: ->
+  constructor: (playlist, audio) ->
     super
 
-    #@audio.bind "songFinished", @proxy(@nextSong)
+    @playlist = playlist
+    @audioControl = audio
+
+    @audioControl.bind "ended", @proxy(@nextSong)
+
+    @audioControl.setSong @playlist.nextSong()
 
   nextSong: ->
     song = @playlist.nextSong
-    @audio.setSong song
+    @audioControl.setSong song
 
 window.AudioFeeder = AudioFeeder

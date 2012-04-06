@@ -13,7 +13,12 @@ class Html5AudioControl extends Spine.Controller
     $("body").append(@el)
     @audio = @el.get(0)
 
-    @currentSong = null
+    # TEMP
+    @audio.controls = true
+
+    @audio.addEventListener "ended", @proxy(@e_ended)
+    @audio.addEventListener "timeupdate", @proxy(@e_timeUpdate)
+
 
   play: ->
     @audio.play()
@@ -29,6 +34,17 @@ class Html5AudioControl extends Spine.Controller
 
   setSong: (song) ->
     @currentSong = song
-    @el.attr "src", song.url
+    @el.attr "src", song.url unless !song
+    @trigger "songchange", song
+
+  currentTime: ->
+    @audio.currentTime
+
+  e_ended: (e) ->
+    console.log "ended"
+    @trigger "ended"
+
+  e_timeUpdate: (e) ->
+    @trigger "timeupdate", @audio.currentTime
 
 window.Html5AudioControl = Html5AudioControl

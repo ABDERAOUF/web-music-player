@@ -9,22 +9,37 @@ class NowPlayingPage extends Spine.Controller
 
   el: "[data-el='now-playing-page']"
 
+  elements:
+    "[data-el='time-remaining']": "$timeRemaining"
+
   events:
     "click nav [data-nav='artists']": "goToArtists"
 
   constructor: ->
     super
 
+    @audioControl.bind "songchange", @proxy(@update)
+    @audioControl.bind "timeupdate", @proxy(@updateTimeRemaining)
     Spine.bind "show:now-playing", => @active()
-    @playlist.bind "next-song", (songId) =>
-      song = Song.find(songId)
-      @render(song: song, album: song.album(), artist: song.album().artist())
 
   goToArtists: -> Spine.trigger "show:artists"
 
   activated: ->
     @el.addClass "active"
-    currentSong = @audio.currentSong
+    @render()
+
+  update: ->
+    currentSong = @audioControl.currentSong
     if currentSong then @render song: currentSong, album: currentSong.album(), artist: currentSong.artist()
+    @updateTimeRemaining @audioControl.currentTime()
+
+  updateTimeRemaining: (time) ->
+    time = Math.floor(time || 0)
+    date = new Date(time * 1000)
+
+    minutes = ("0" + date.getMinutes()).slice(-2)
+    seconds = ("0" + date.getSeconds()).slice(-2)
+
+    @$timeRemaining.text "#{minutes}:#{seconds}"
 
 window.NowPlayingPage = NowPlayingPage
