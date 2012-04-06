@@ -24,7 +24,7 @@ class AlbumsPage extends Spine.Controller
     super
 
     @routes
-      "/albums/artist/:artitsId": (artistId) => @showAllByArtist(artistId)
+      "/albums/artist/:artistId": (params) => @showAllByArtist(params.artistId)
       "/albums": => @showAll()
 
   update: -> @render(albums: @items, artist: @artist)

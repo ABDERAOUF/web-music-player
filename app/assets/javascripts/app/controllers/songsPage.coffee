@@ -25,8 +25,8 @@ class SongsPage extends Spine.Controller
     super
 
     @routes
-      "/songs/artist/:artistId": (artistId) => @showAllByArtist(artistId)
-      "/songs/album/:albumId": (albumId) => @showAllByAlbum(albumId)
+      "/songs/artist/:artistId": (params) => @showAllByArtist(params.artistId)
+      "/songs/album/:albumId": (params) => @showAllByAlbum(params.albumId)
       "/songs": => @showAll()
 
 
