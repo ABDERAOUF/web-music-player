@@ -33,15 +33,25 @@ class App extends Spine.Controller
     # TEMP: Temp data, bootstrapped
     Song.refresh([
       { id: 1, name: "Bad", album_id: 1, artist_id: 1 }
-      { id: 2, name: "The Way You Make Me Feel", album_id: 1, artist_id: 1, url: "/music/song.mp3" }
+      { id: 2, name: "The Way You Make Me Feel", album_id: 1, artist_id: 1 }
       { id: 3, name: "Thriller", album_id: 2, artist_id: 1 }
       { id: 4, name: "Sigh No More", album_id: 3, artist_id: 2 }
       { id: 5, name: "The Cave", album_id: 3, artist_id: 2 }
+      { id: 6, name: "Till The World Ends", album_id: 4, artist_id: 4, url: "/music/01 - Till The World Ends.mp3" }
+      { id: 7, name: "Hold It Against Me", album_id: 4, artist_id: 4, url: "/music/02 - Hold It Against Me.mp3" }
+      { id: 8, name: "Inside Out", album_id: 4, artist_id: 4, url: "/music/03 - Inside Out.mp3" }
+      { id: 9, name: "I Wanna Go", album_id: 4, artist_id: 4, url: "/music/04 - I Wanna Go.mp3" }
+      { id: 10, name: "How I Roll", album_id: 4, artist_id: 4, url: "/music/05 - How I Rolww.mp3" }
+      { id: 11, name: "(Drop Dead) Beautiful (feat. Sabi)", album_id: 4, artist_id: 4, url: "/music/06 - (Drop Dead) Beautiful (feat. Sabi).mp3" }
+      { id: 12, name: "Seal It With A Kiss", album_id: 4, artist_id: 4, url: "/music/07 - Seal It With A Kiss.mp3" }
+      { id: 13, name: "Big Fat Bass (feat. Will.I.Am)", album_id: 4, artist_id: 4, url: "/music/08 - Big Fat Bass (feat. Will.I.Am).mp3" }
+
     ])
     Album.refresh([
       { id: 1, name: "Bad", release_date: "1987", artist_id: 1 }
       { id: 2, name: "Thriller", release_date: "1982", artist_id: 1 }
       { id: 3, name: "Sigh No More", release_date: "2009", artist_id: 2 }
+      { id: 4, name: "Femme Fatale", artist_id: 4 }
     ])
     Artist.refresh([
       { id: 1, name: "Michael Jackson" }
@@ -60,7 +70,7 @@ class App extends Spine.Controller
       { id: 14, name: "Garbage" }
     ])
     Playlist.refresh([
-      { id: 1, name: "Playlist 1", songs: [ 2, 4, 5 ] }
+      { id: 1, name: "Playlist 1", songs: [ 6, 7, 8, 9, 10 ] }
     ])
 
     playlist = Playlist.first()

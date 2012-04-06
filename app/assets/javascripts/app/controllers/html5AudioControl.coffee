@@ -23,19 +23,26 @@ class Html5AudioControl extends Spine.Controller
   play: ->
     @audio.play()
     @trigger "play"
+    this
 
   pause: ->
     @audio.pause()
     @trigger "pause"
+    this
 
   stop: ->
     @audio.pause()
     @trigger "stop"
+    this
+
+  isPaused: ->
+    @audio.paused
 
   setSong: (song) ->
     @currentSong = song
     @el.attr "src", song.url unless !song
     @trigger "songchange", song
+    this
 
   currentTime: ->
     @audio.currentTime
