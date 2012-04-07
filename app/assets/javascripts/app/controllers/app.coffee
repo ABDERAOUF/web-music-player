@@ -37,11 +37,12 @@ class App extends Spine.Controller
       { id: 3, name: "Thriller", album_id: 2, artist_id: 1 }
       { id: 4, name: "Sigh No More", album_id: 3, artist_id: 2 }
       { id: 5, name: "The Cave", album_id: 3, artist_id: 2 }
-      { id: 6, name: "Till The World Ends", album_id: 4, artist_id: 4, url: "/music/01 - Till The World Ends.mp3" }
+      # Wrong URL on purpose
+      { id: 6, name: "Till The World Ends", album_id: 4, artist_id: 4, url: "/music/01 - Till The World Ends.mp1" }
       { id: 7, name: "Hold It Against Me", album_id: 4, artist_id: 4, url: "/music/02 - Hold It Against Me.mp3" }
       { id: 8, name: "Inside Out", album_id: 4, artist_id: 4, url: "/music/03 - Inside Out.mp3" }
       { id: 9, name: "I Wanna Go", album_id: 4, artist_id: 4, url: "/music/04 - I Wanna Go.mp3" }
-      { id: 10, name: "How I Roll", album_id: 4, artist_id: 4, url: "/music/05 - How I Rolww.mp3" }
+      { id: 10, name: "How I Roll", album_id: 4, artist_id: 4, url: "/music/05 - How I Roll.mp3" }
       { id: 11, name: "(Drop Dead) Beautiful (feat. Sabi)", album_id: 4, artist_id: 4, url: "/music/06 - (Drop Dead) Beautiful (feat. Sabi).mp3" }
       { id: 12, name: "Seal It With A Kiss", album_id: 4, artist_id: 4, url: "/music/07 - Seal It With A Kiss.mp3" }
       { id: 13, name: "Big Fat Bass (feat. Will.I.Am)", album_id: 4, artist_id: 4, url: "/music/08 - Big Fat Bass (feat. Will.I.Am).mp3" }
@@ -70,7 +71,7 @@ class App extends Spine.Controller
       { id: 14, name: "Garbage" }
     ])
     Playlist.refresh([
-      { id: 1, name: "Playlist 1", songs: [ 6, 7, 8, 9, 10 ] }
+      { id: 1, name: "Playlist 1", user_queue: [ 6, 7, 8, 9, 10 ] }
     ])
 
     playlist = Playlist.first()
@@ -87,7 +88,8 @@ class App extends Spine.Controller
     # Initialise component controllers
     new PlayControls(audioControl: audioControl)
 
-    audioFeeder = new AudioFeeder(playlist, audioControl)
+    songFeeder = new SongFeeder(playlist, audioControl)
+    songFeeder.start()
 
     Spine.Route.setup()
 

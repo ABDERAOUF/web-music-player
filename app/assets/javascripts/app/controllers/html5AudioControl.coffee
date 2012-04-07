@@ -18,6 +18,8 @@ class Html5AudioControl extends Spine.Controller
 
     @audio.addEventListener "ended", @proxy(@e_ended)
     @audio.addEventListener "timeupdate", @proxy(@e_timeUpdate)
+    @audio.addEventListener "abort", @proxy(@e_abort)
+    @audio.addEventListener "error", @proxy(@e_error)
 
 
   play: ->
@@ -47,11 +49,9 @@ class Html5AudioControl extends Spine.Controller
   currentTime: ->
     @audio.currentTime
 
-  e_ended: (e) ->
-    console.log "ended"
-    @trigger "ended"
-
-  e_timeUpdate: (e) ->
-    @trigger "timeupdate", @audio.currentTime
+  e_ended:      (e) -> @trigger "ended"
+  e_timeUpdate: (e) -> @trigger "timeupdate", @audio.currentTime
+  e_abort:      (e) -> @trigger "abort"
+  e_error:      (e) -> @trigger "error"
 
 window.Html5AudioControl = Html5AudioControl
