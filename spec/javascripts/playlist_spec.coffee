@@ -20,12 +20,12 @@ describe "Playlist", ->
 
     it "should add the song id to the playlist", ->
       playlist.add(songIdToAdd)
-      expect(playlist.songs[0]).toBe(songIdToAdd)
+      expect(playlist.userQueue()[0]).toBe(songIdToAdd)
 
     it "should trigger 'song.add' passing the song that was added", ->
-      handler = songAdded: ->
+      handler = songAdded: (playlist, song) ->
       spyOn handler, "songAdded"
-      playlist.bind "song.add", handler.songAdded
+      playlist.bind "song.added", handler.songAdded
       playlist.add songIdToAdd
       expect(handler.songAdded).toHaveBeenCalledWith(playlist, Song.find(songIdToAdd))
 
@@ -45,19 +45,19 @@ describe "Playlist", ->
       playlist = new Playlist
         id: 1
         name: "Playlist 1"
-        songs: [ 1, 2, 3 ]
+        user_queue: [ 1, 2, 3 ]
 
     it "should return the next song", ->
       expect(playlist.nextSong().name).toBe(expectedNextSong.name)
 
     it "should reduce the playlist length", ->
       playlist.nextSong()
-      expect(playlist.songs.length).toBe(2)
+      expect(playlist.userQueue().length).toBe(2)
 
     it "should remove the song from the playlist", ->
       playlist.nextSong()
       expect($.inArray(expectedNextSong.id, playlist.songs)).toBe(-1)
 
     it "should return null if the playlist is empty", ->
-      playlist.songs = null
+      playlist.user_queue = null
       expect(playlist.nextSong()).toBeNull()
