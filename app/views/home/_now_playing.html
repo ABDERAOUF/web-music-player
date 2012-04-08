@@ -1,4 +1,4 @@
-<div data-role="content">
+<div class="content" data-role="content">
     <nav class="navigation">
         <ul>
             <li><a href="#/artists">Find Songs</a></li>
@@ -6,14 +6,16 @@
         </ul>
     </nav>
 
-    <div class="album-cover"></div>
-    <div class="song-details">
-        <h2 class="song-name">{{song.name}}</h2>
-        <p class="album-artist-info">
-            <span class="artist-name">{{artist.name}}</span>
-            <span class="album-name">{{album.name}}</span>
-        </p>
-        <p class="time-remaining" data-el="time-remaining"></p>
-        <p class="released">{{released_date album.release_date}}</p>
+    <div class="details-container">
+        <div class="album-cover"></div>
+        <div class="song-details">
+            <h2 class="song-name">{{song.name}}</h2>
+            <p class="album-artist-info">
+                <span class="artist-name">{{artist.name}}</span>
+                <span class="album-name">{{album.name}}</span>
+            </p>
+            <p class="time-remaining" data-el="time-remaining"></p>
+            <p class="released">{{released_date album.release_date}}</p>
+        </div>
     </div>
 </div>

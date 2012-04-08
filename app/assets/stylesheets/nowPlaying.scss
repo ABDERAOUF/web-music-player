@@ -1,0 +1,60 @@
+@import "theme";
+@import "css3";
+
+$coverSize: 300px;
+$pad: 40px;
+
+#now-playing.page {
+  .content { overflow-y: hidden; top: 0; }
+
+  nav { display: none; }
+
+  .details-container {
+    position: absolute;
+    width: 100%;
+    height: $coverSize;
+    margin: -($coverSize / 2) auto 0;
+    top: 50%;
+
+    .album-cover {
+      position: absolute;
+      height: $coverSize;
+      width: $coverSize;
+      margin-left: -($coverSize + ($pad / 2));
+      left: 50%;
+
+      background: white;
+      @include box-shadow( (0 20px 50px rgba(0, 0, 0, 0.5)) );
+    }
+
+    .song-details {
+      position: absolute;
+      margin-left: ($pad / 2);
+      left: 50%;
+
+      color: white;
+
+      .song-name {
+        font-size: 40px
+      }
+
+      .album-artist-info {
+        .artist-name {
+
+        }
+
+        .album-name {
+
+        }
+      }
+
+      .time-remaining {
+
+      }
+
+      .released {
+
+      }
+    }
+  }
+}

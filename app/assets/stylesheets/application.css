@@ -1,9 +1,8 @@
 /*
  *= require reset
-
- *= require theme
  *= require typography
+ *= require ui
  *= require main
-
- *= require_directory .
+ *
+ *= require nowPlaying
 */

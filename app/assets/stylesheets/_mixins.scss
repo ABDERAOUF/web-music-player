@@ -1,0 +1,19 @@
+@mixin carbon-fibre-background($colour, $size: 4px) {
+  background:
+       -moz-radial-gradient(black 15%, transparent 16%) 0 0,
+       -moz-radial-gradient(black 15%, transparent 16%) $size $size,
+       -moz-radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
+       -moz-radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) $size ($size + 1);
+  background:
+    -webkit-radial-gradient(black 15%, transparent 16%) 0 0,
+    -webkit-radial-gradient(black 15%, transparent 16%) $size $size,
+    -webkit-radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
+    -webkit-radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) $size ($size + 1);
+  background:
+            radial-gradient(black 15%, transparent 16%) 0 0,
+            radial-gradient(black 15%, transparent 16%) $size $size,
+            radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
+            radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) $size ($size + 1);
+  background-color: $colour;
+  background-size: ($size * 2) ($size * 2);
+}
