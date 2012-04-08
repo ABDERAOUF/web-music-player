@@ -32,8 +32,13 @@ class NowPlayingPage extends Spine.Controller
 
   update: ->
     currentSong = @audioControl.currentSong
-    if currentSong then @render song: currentSong, album: currentSong.album(), artist: currentSong.artist()
+    if currentSong then @render
+      song_name: currentSong.name
+      song_rating: currentSong.rating
+      album_name: currentSong.album().name
+      artist_name: currentSong.artist().name
     @updateTimeRemaining @audioControl.currentTime()
+    this
 
   updateTimeRemaining: (time) ->
     time = Math.floor(time || 0)
@@ -43,5 +48,6 @@ class NowPlayingPage extends Spine.Controller
     seconds = ("0" + date.getSeconds()).slice(-2)
 
     @$timeRemaining.text "#{minutes}:#{seconds}"
+    this
 
 window.NowPlayingPage = NowPlayingPage

@@ -5,7 +5,9 @@ class Song extends Spine.Model
   @configure "Song",
     "name",
     "sort_name",
-    "url"
+    "rating",
+    "url",
+    "cover_url"
 
   @belongsTo "artist", "Artist"
   @belongsTo "album", "Album"

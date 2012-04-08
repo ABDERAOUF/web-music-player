@@ -18,6 +18,7 @@ $pad: 40px;
 
     .album-cover {
       position: absolute;
+      z-index: 1;
       height: $coverSize;
       width: $coverSize;
       margin-left: -($coverSize + ($pad / 2));
@@ -33,6 +34,7 @@ $pad: 40px;
       left: 50%;
 
       color: white;
+      text-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
 
       .song-name {
         font-size: 40px
@@ -49,7 +51,9 @@ $pad: 40px;
       }
 
       .time-remaining {
-
+        font-size: 20px;
+        font-weight: 600;
+        color: #dedede;
       }
 
       .released {

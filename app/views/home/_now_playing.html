@@ -9,13 +9,14 @@
     <div class="details-container">
         <div class="album-cover"></div>
         <div class="song-details">
-            <h2 class="song-name">{{song.name}}</h2>
+            <h2 class="song-name">{{song_name}}</h2>
             <p class="album-artist-info">
-                <span class="artist-name">{{artist.name}}</span>
-                <span class="album-name">{{album.name}}</span>
+                <span class="artist-name">{{artist_name}}</span>
+                <span class="album-name">{{album_name}}</span>
             </p>
+            <span class="rating {{song_rating}}-stars"></span>
             <p class="time-remaining" data-el="time-remaining"></p>
-            <p class="released">{{released_date album.release_date}}</p>
+            <p class="released">{{released_date release_date}}</p>
         </div>
     </div>
 </div>
