@@ -1,9 +1,13 @@
 @import "theme";
 @import "css3";
 @import "mixins";
+@import "easing";
 
 $coverSize: 300px;
 $pad: 40px;
+
+$left: -($coverSize + ($pad / 2));
+$right: ($pad / 2);
 
 #now-playing.page {
   .content { overflow-y: hidden; top: 0; }
@@ -23,7 +27,7 @@ $pad: 40px;
       z-index: 1;
       height: $coverSize;
       width: $coverSize;
-      margin-left: -($coverSize + ($pad / 2));
+      margin-left: $left;
       left: 50%;
 
       @include border-radius(14px);
@@ -34,17 +38,21 @@ $pad: 40px;
 
       @include gleam(14px);
 
+      -webkit-animation: cover-position-swap 20s infinite $easeInOutCubic;
+      
       img { width: 100%; }
     }
 
     .song-details {
       position: absolute;
       padding: $pad 0 0 0;
-      margin-left: ($pad / 2);
+      margin-left: $right;
       left: 50%;
 
       color: white;
       text-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+      
+      -webkit-animation: details-position-swap 20s infinite $easeInOutCubic;
 
       .album-artist-info {
         margin: 0 0 12px;
@@ -80,5 +88,25 @@ $pad: 40px;
         font-weight: 600;
       }
     }
+  }
+}
+
+@-webkit-keyframes cover-position-swap {
+  0%, 40%, 100% {
+    margin-left: $left;
+  }
+
+  45%, 95% {
+    margin-left: $right;
+  }
+}
+
+@-webkit-keyframes details-position-swap {
+  0%, 40%, 100% {
+    margin-left: $right;
+  }
+
+  45%, 95% {
+    margin-left: $left;
   }
 }
