@@ -1,3 +1,5 @@
+@import "css3";
+
 @mixin carbon-fibre-background($colour, $size: 4px) {
   background:
        -moz-radial-gradient(black 15%, transparent 16%) 0 0,
@@ -16,4 +18,50 @@
             radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) $size ($size + 1);
   background-color: $colour;
   background-size: ($size * 2) ($size * 2);
+}
+
+@mixin gleam($borderRadius) {
+  $rotation: -75deg;
+  $topTransparency: 0.2;
+  $bottomTransparency: 0.4;
+  $location: 40%;
+
+
+  &:after {
+    content: '';
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    @include border-radius($borderRadius);
+
+    background: -moz-linear-gradient($rotation,
+      rgba(255,255,255,$topTransparency) 0%,
+      rgba(255,255,255,$bottomTransparency) $location,
+      rgba(255,255,255,0) ($location + 1),
+      rgba(255,255,255,0) 100%);
+    background: -webkit-linear-gradient($rotation,
+      rgba(255,255,255,$topTransparency) 0%,
+      rgba(255,255,255,$bottomTransparency) $location,
+      rgba(255,255,255,0) ($location + 1),
+      rgba(255,255,255,0) 100%);
+    background: -o-linear-gradient($rotation,
+      rgba(255,255,255,$topTransparency) 0%,
+      rgba(255,255,255,$bottomTransparency) $location,
+      rgba(255,255,255,0) ($location + 1),
+      rgba(255,255,255,0) 100%);
+    background: -ms-linear-gradient($rotation,
+      rgba(255,255,255,$topTransparency) 0%,
+      rgba(255,255,255,$bottomTransparency) $location,
+      rgba(255,255,255,0) ($location + 1),
+      rgba(255,255,255,0) 100%);
+    background: linear-gradient($rotation,
+      rgba(255,255,255,$topTransparency) 0%,
+      rgba(255,255,255,$bottomTransparency) $location,
+      rgba(255,255,255,0) ($location + 1),
+      rgba(255,255,255,0) 100%);
+  }
 }

@@ -20,3 +20,6 @@ Handlebars.registerHelper "artist_album_song_count", ->
   songWord = if songCount == 1 then "song" else "songs"
 
   "#{albumCount} #{albumWord}, #{songCount} #{songWord}"
+
+Handlebars.registerHelper "artist_album_cover_url", ->
+  this.albums().first()?.cover_url

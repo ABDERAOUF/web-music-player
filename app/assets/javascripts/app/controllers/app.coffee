@@ -52,7 +52,7 @@ class App extends Spine.Controller
       { id: 1, name: "Bad", release_date: "1987", artist_id: 1 }
       { id: 2, name: "Thriller", release_date: "1982", artist_id: 1 }
       { id: 3, name: "Sigh No More", release_date: "2009", artist_id: 2 }
-      { id: 4, name: "Femme Fatale", artist_id: 4, cover_url: "/music/cover.jpg" }
+      { id: 4, name: "Femme Fatale", release_date: "2010", artist_id: 4, cover_url: "/music/cover.jpg" }
     ])
     Artist.refresh([
       { id: 1, name: "Michael Jackson" }

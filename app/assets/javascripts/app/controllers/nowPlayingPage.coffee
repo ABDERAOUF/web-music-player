@@ -37,6 +37,7 @@ class NowPlayingPage extends Spine.Controller
       song_rating: currentSong.rating
       album_name: currentSong.album().name
       album_cover_url: currentSong.album().cover_url
+      album_release_date: currentSong.album().release_date
       artist_name: currentSong.artist().name
 
     @updateTimeRemaining @audioControl.currentTime()

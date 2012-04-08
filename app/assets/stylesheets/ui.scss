@@ -78,6 +78,8 @@ a.ui-button, button.ui-button {
 
 
 .ui-content-list {
+  $thumbnailSize: 48px;
+
     margin: 0;
     padding: 0;
 
@@ -85,7 +87,7 @@ a.ui-button, button.ui-button {
 
     .ui-content-list-item {
         position: relative;
-        height: 48px;
+        height: $thumbnailSize;
 
         text-shadow: 0 1px 0 #fff;
         cursor: pointer;
@@ -93,12 +95,13 @@ a.ui-button, button.ui-button {
         @include linear-gradient(#f8f8f8, 0%, #dfdfdf, 100%);
 
         .thumbnail {
-            float: left;
-            width: 48px;
-            height: 48px;
-            margin: 0 10px 0 0;
+          float: left;
+          width: $thumbnailSize;
+          height: $thumbnailSize;
+          margin: 0 10px 0 0;
 
-            background: red;
+          background: white top left no-repeat;
+          background-size: $thumbnailSize;
         }
 
         .caption {

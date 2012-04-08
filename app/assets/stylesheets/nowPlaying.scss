@@ -1,5 +1,6 @@
 @import "theme";
 @import "css3";
+@import "mixins";
 
 $coverSize: 300px;
 $pad: 40px;
@@ -25,35 +26,46 @@ $pad: 40px;
       margin-left: -($coverSize + ($pad / 2));
       left: 50%;
 
-      @include border-radius(4px);
+      @include border-radius(14px);
 
       background: white top left no-repeat;
       background-size: 100%;
       @include box-shadow( (0 20px 50px rgba(0, 0, 0, 0.5)) );
+
+      @include gleam(14px);
 
       img { width: 100%; }
     }
 
     .song-details {
       position: absolute;
+      padding: $pad 0 0 0;
       margin-left: ($pad / 2);
       left: 50%;
 
       color: white;
       text-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
 
-      .song-name {
-        font-size: 40px
-      }
-
       .album-artist-info {
-        .artist-name {
+        margin: 0 0 12px;
+        font-size: 24px;
 
+        .artist-name {
+          &:after {
+            content: ' - ';
+          }
         }
 
         .album-name {
 
         }
+      }
+
+      .song-name {
+        margin: 0;
+
+        font-size: 40px;
+        font-weight: 700;
       }
 
       .time-remaining {
@@ -62,8 +74,10 @@ $pad: 40px;
         color: #dedede;
       }
 
-      .released {
-
+      .release-date {
+        color: #aaaaaa;
+        font-size: 13px;
+        font-weight: 600;
       }
     }
   }
