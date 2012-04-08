@@ -2,6 +2,7 @@
  *= require reset
  *= require typography
  *= require ui
+ *= require icons
  *= require main
  *
  *= require nowPlaying
