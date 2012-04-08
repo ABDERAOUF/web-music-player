@@ -18,14 +18,20 @@ $pad: 40px;
 
     .album-cover {
       position: absolute;
+      overflow: hidden;
       z-index: 1;
       height: $coverSize;
       width: $coverSize;
       margin-left: -($coverSize + ($pad / 2));
       left: 50%;
 
-      background: white;
+      @include border-radius(4px);
+
+      background: white top left no-repeat;
+      background-size: 100%;
       @include box-shadow( (0 20px 50px rgba(0, 0, 0, 0.5)) );
+
+      img { width: 100%; }
     }
 
     .song-details {

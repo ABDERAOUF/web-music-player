@@ -6,8 +6,7 @@ class Song extends Spine.Model
     "name",
     "sort_name",
     "rating",
-    "url",
-    "cover_url"
+    "url"
 
   @belongsTo "artist", "Artist"
   @belongsTo "album", "Album"
