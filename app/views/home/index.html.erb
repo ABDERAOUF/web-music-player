@@ -3,6 +3,7 @@
   <div id="artists" class="page" data-el="artists-page" data-role="page"></div>
   <div id="albums" class="page" data-el="albums-page" data-role="page"></div>
   <div id="songs" class="page" data-el="songs-page" data-role="page"></div>
+  <div id="playlist" class="page" data-el="playlist-page" data-role="page"></div>
   <div id="now-playing" class="page" data-el="now-playing-page" data-role="page"></div>
 
   <footer>
@@ -14,8 +15,8 @@
     <%= handlebars_template :partial => "artists_page", :id => "artists" %>
     <%= handlebars_template :partial => "albums_page", :id => "albums" %>
     <%= handlebars_template :partial => "songs_page", :id => "songs" %>
+    <%= handlebars_template :partial => "playlist_page", :id => "playlist" %>
     <%= handlebars_template :partial => "now_playing" %>
-    <%= handlebars_template :partial => "current_playlist" %>
 <% end %>
 
 <% content_for :scripts do %>

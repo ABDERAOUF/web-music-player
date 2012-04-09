@@ -2,6 +2,7 @@
 #= require spine
 
 #= require handlebars.template
+#= require humanReadable
 
 class NowPlayingPage extends Spine.Controller
   @extend HandlebarsTemplate
@@ -31,26 +32,13 @@ class NowPlayingPage extends Spine.Controller
     @render()
 
   update: ->
-    currentSong = @audioControl.currentSong
-    if currentSong then @render
-      song_name: currentSong.name
-      song_rating: currentSong.rating
-      album_name: currentSong.album().name
-      album_cover_url: currentSong.album().cover_url
-      album_release_date: currentSong.album().release_date
-      artist_name: currentSong.artist().name
-
+    @item = @audioControl.currentSong?.flatten()
+    @render()
     @updateTimeRemaining @audioControl.currentTime()
     this
 
   updateTimeRemaining: (time) ->
-    time = Math.floor(time || 0)
-    date = new Date(time * 1000)
-
-    minutes = ("0" + date.getMinutes()).slice(-2)
-    seconds = ("0" + date.getSeconds()).slice(-2)
-
-    @$timeRemaining.text "#{minutes}:#{seconds}"
+    @$timeRemaining.text Time.from(time)
     this
 
 window.NowPlayingPage = NowPlayingPage

@@ -1,0 +1,37 @@
+<header>
+    <h1>{{playlist_name}}</h1>
+    <a href="#/now-playing"
+        data-role="next-button"
+        class="ui-button">Now Playing</a>
+</header>
+
+<div class="content" data-role="content">
+    <ul class="ui-content-list">
+        {{#with now_playing}}
+        <li class="ui-content-list-item now-playing">
+            <span class="song-title">{{name}}</span>
+            <span class="artist-name">{{artist}}</span>
+            <span class="album-name">{{album}}</span>
+            <span class="time-remaining" data-el="time-remaining"></span>
+        </li>
+        {{/with}}
+        <li class="divider">User Added</li>
+        {{#each user_queue}}
+        <li class="ui-content-list-item">
+            <span class="queue-number">1</span>
+            <span class="song-title">{{name}}</span>
+            <span class="artist-name">Mumford & Sons</span>
+            <span class="album-name">Sigh No More</span>
+        </li>
+        {{/each}}
+        <li class="divider">Random</li>
+        {{#each auto_queue}}
+        <li class="ui-content-list-item">
+            <span class="queue-number">2</span>
+            <span class="song-title">Bad</span>
+            <span class="artist-name">Michael Jackson</span>
+            <span class="album-name">Bad</span>
+        </li>
+        {{/each}}
+    </ul>
+</div>

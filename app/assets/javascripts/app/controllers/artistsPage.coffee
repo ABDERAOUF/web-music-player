@@ -24,7 +24,6 @@ class ArtistsPage extends Spine.Controller
 
     @routes
       "/artists": => @showAll()
-      "": => @showAll()
 
   update: -> @render(artists: @items)
 

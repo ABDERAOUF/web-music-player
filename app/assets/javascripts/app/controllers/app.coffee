@@ -81,20 +81,22 @@ class App extends Spine.Controller
     playlist = Playlist.first()
     audioControl = new Html5AudioControl()
 
-    # Initialise main controllers
+    # Initialise main pages
     new Spine.Manager(
       new ArtistsPage(playlist: playlist),
       new AlbumsPage(playlist: playlist),
       new SongsPage(playlist: playlist),
-      new NowPlayingPage(audioControl: audioControl),
-      new PlaylistPage(playlist: playlist, audioControl: audioControl))
+      new PlaylistPage(playlist: playlist, audioControl: audioControl),
+      new NowPlayingPage(audioControl: audioControl))
 
-    # Initialise component controllers
+    # Initialise components
     new PlayControls(audioControl: audioControl)
 
     songFeeder = new SongFeeder(playlist, audioControl)
     songFeeder.start()
 
+    @routes
+      "": => @navigate "/now-playing"
     Spine.Route.setup()
 
 window.App = App

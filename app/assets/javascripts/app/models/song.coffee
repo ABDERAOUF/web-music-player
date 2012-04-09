@@ -11,4 +11,16 @@ class Song extends Spine.Model
   @belongsTo "artist", "Artist"
   @belongsTo "album", "Album"
 
+  flatten: ->
+    artist = @artist()
+    album = @album()
+
+    name: @name
+    sort_name: @sort_name
+    rating: @rating,
+    album: album.name
+    album_cover_url: album.cover_url
+    album_release_date: album.release_date
+    artist: artist.name
+
 window.Song = Song
