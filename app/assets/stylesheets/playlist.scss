@@ -1,0 +1,24 @@
+
+#playlist.page {
+  .songs {
+    counter-reset: song-number;
+    li.song {
+      &:before {
+        content: counter(song-number);
+        counter-increment: song-number;
+
+        float: left;
+        width: 48px;
+        height: 48px;
+        margin: 0;
+
+        line-height: 48px;
+        font-size: 20px;
+        font-weight: 600;
+        text-align: center;
+      }
+
+      .artist-name:after { content: ' - '; }
+    }
+  }
+}

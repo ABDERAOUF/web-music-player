@@ -100,15 +100,8 @@ $right: ($pad / 2);
         margin: 0 0 12px;
         font-size: 22px;
 
-        .artist-name {
-          &:after {
-            content: ' - ';
-          }
-        }
-
-        .album-name {
-
-        }
+        .artist-name:after { content: ' - '; }
+        .album-name {}
       }
 
       .song-name {

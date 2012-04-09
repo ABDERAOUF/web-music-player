@@ -9,29 +9,35 @@
 </header>
 
 <div class="content" data-role="content">
-    <ul class="ui-content-list">
+    <ul class="ui-content-list double-line songs">
         {{#with now_playing}}
         <li class="ui-content-list-item now-playing">
-            <span class="song-title">{{name}}</span>
-            <span class="artist-name">{{artist}}</span>
-            <span class="album-name">{{album}}</span>
-            <span class="time-remaining" data-el="time-remaining"></span>
+            <p class="caption song-title">{{name}}</p>
+            <p class="descriptive song-details">
+                <span class="artist-name">{{artist}}</span>
+                <span class="album-name">{{album}}</span>
+            </p>
+            <p class="count time-remaining" data-el="time-remaining"></p>
         </li>
         {{/with}}
         <li class="ui-content-list-divider">User Added</li>
         {{#each user_queue}}
-        <li class="ui-content-list-item">
-            <span class="song-title">{{name}}</span>
-            <span class="artist-name">{{artist}}</span>
-            <span class="album-name">{{album}}</span>
+        <li class="ui-content-list-item song">
+            <p class="caption song-title">{{name}}</p>
+            <p class="descriptive song-details">
+                <span class="artist-name">{{artist}}</span>
+                <span class="album-name">{{album}}</span>
+            </p>
         </li>
         {{/each}}
         <li class="ui-content-list-divider">Random</li>
         {{#each auto_queue}}
-        <li class="ui-content-list-item">
-            <span class="song-title">{{name}}</span>
-            <span class="artist-name">{{artist}}</span>
-            <span class="album-name">{{album}}</span>
+        <li class="ui-content-list-item song">
+            <p class="caption song-title">{{name}}</p>
+            <p class="descriptive song-details">
+                <span class="artist-name">{{artist}}</span>
+                <span class="album-name">{{album}}</span>
+            </p>
         </li>
         {{/each}}
     </ul>
