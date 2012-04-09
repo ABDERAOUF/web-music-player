@@ -30,24 +30,21 @@ class SongsPage extends Spine.Controller
       "/songs": => @showAll()
 
 
-  update: -> @render(songs: @items, filter: @filter)
-
   showAll: ->
-    @filter = null
-    @items = Song.all()
-    @update()
+    @item = Song.all()
+    @render(songs: @item)
     @active()
 
   showAllByArtist: (artistId) ->
-    @filter = Artist.find(artistId)
-    @items = @filter.songs().all()
-    @update()
+    artist = Artist.find(artistId)
+    @item = artist.songs().all()
+    @render(songs: @item, filter: artist)
     @active()
 
   showAllByAlbum: (albumId) ->
-    @filter = Album.find(albumId)
-    @items = @filter.songs().all()
-    @update()
+    album = Album.find(albumId)
+    @item = album.songs().all()
+    @render(songs: @item, filter: album)
     @active()
 
   addSongToPlaylist: (e) ->

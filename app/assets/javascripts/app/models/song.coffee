@@ -15,6 +15,7 @@ class Song extends Spine.Model
     artist = @artist()
     album = @album()
 
+    id: @id
     name: @name
     sort_name: @sort_name
     rating: @rating,

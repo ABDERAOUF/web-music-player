@@ -25,10 +25,6 @@ class PlaylistPage extends Spine.Controller
     @routes
       "/playlist": => @active()
 
-  activated: ->
-    @el.addClass "active"
-    @render()
-
   update: ->
     if @audioControl.currentSong
       @item =

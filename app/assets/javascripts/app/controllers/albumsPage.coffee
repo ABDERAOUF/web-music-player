@@ -27,18 +27,15 @@ class AlbumsPage extends Spine.Controller
       "/albums/artist/:artistId": (params) => @showAllByArtist(params.artistId)
       "/albums": => @showAll()
 
-  update: -> @render(albums: @items, artist: @artist)
-
   showAll: ->
-    @artist = null
-    @items = Album.all()
-    @update()
+    @item = $.map(Album.all(), (album) -> album.flatten())
+    @render(albums: @item)
     @active()
 
   showAllByArtist: (artistId) ->
-    @artist = Artist.find(artistId)
-    @items = @artist.albums().all()
-    @update()
+    artist = Artist.find(artistId)
+    @item = $.map(artist.albums().all(), (album) -> album.flatten())
+    @render(artist: artist, albums: @item)
     @active()
 
   showAllSongs: (e) ->
