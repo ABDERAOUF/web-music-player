@@ -1,5 +1,5 @@
 Time =
-  from: ->
+  from: (time) ->
     time = Math.floor(time || 0)
     date = new Date(time * 1000)
 
