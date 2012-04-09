@@ -42,13 +42,13 @@ $right: ($pad / 2);
         border-radius: 50%;
 
         &.find-songs {
-          background: url("/icons.svg");
+          background: url("icons.svg#search");
         }
         &.view-playlist {
-          background: url("/icons.svg");
+          background: url("icons.svg");
         }
         &.settings {
-          background: url("/icons.svg");
+          background: url("icons.svg");
         }
       }
     }

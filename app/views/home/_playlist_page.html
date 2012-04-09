@@ -18,22 +18,20 @@
             <span class="time-remaining" data-el="time-remaining"></span>
         </li>
         {{/with}}
-        <li class="divider">User Added</li>
+        <li class="ui-content-list-divider">User Added</li>
         {{#each user_queue}}
         <li class="ui-content-list-item">
-            <span class="queue-number">1</span>
             <span class="song-title">{{name}}</span>
-            <span class="artist-name">Mumford & Sons</span>
-            <span class="album-name">Sigh No More</span>
+            <span class="artist-name">{{artist}}</span>
+            <span class="album-name">{{album}}</span>
         </li>
         {{/each}}
-        <li class="divider">Random</li>
+        <li class="ui-content-list-divider">Random</li>
         {{#each auto_queue}}
         <li class="ui-content-list-item">
-            <span class="queue-number">2</span>
-            <span class="song-title">Bad</span>
-            <span class="artist-name">Michael Jackson</span>
-            <span class="album-name">Bad</span>
+            <span class="song-title">{{name}}</span>
+            <span class="artist-name">{{artist}}</span>
+            <span class="album-name">{{album}}</span>
         </li>
         {{/each}}
     </ul>

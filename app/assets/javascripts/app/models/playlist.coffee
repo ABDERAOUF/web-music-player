@@ -56,10 +56,15 @@ class Playlist extends Spine.Model
     @currently_playing
 
   userQueue: ->
-    @user_queue
+    if @user_queue?.length
+      $.map @user_queue, (songId) -> Song.find(songId)
+    else
+      []
 
   autoQueue: ->
-    @auto_queue
-
+    if @auto_queue?.length
+      $.map @auto_queue, (songId) -> Song.find(songId)
+    else
+      []
 
 window.Playlist = Playlist
