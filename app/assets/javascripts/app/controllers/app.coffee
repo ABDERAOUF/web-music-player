@@ -46,13 +46,16 @@ class App extends Spine.Controller
       { id: 11, name: "(Drop Dead) Beautiful (feat. Sabi)", album_id: 4, artist_id: 4, url: "/music/06 - (Drop Dead) Beautiful (feat. Sabi).mp3" }
       { id: 12, name: "Seal It With A Kiss", album_id: 4, artist_id: 4, url: "/music/07 - Seal It With A Kiss.mp3" }
       { id: 13, name: "Big Fat Bass (feat. Will.I.Am)", album_id: 4, artist_id: 4, url: "/music/08 - Big Fat Bass (feat. Will.I.Am).mp3" }
-
+      { id: 14, name: "Blind", album_id: 5, artist_id: 15, url: "/music/01 Blind.mp3" }
+      { id: 15, name: "Dead", album_id: 6, artist_id: 15, url: "/music/01 Dead.mp3" }
     ])
     Album.refresh([
       { id: 1, name: "Bad", release_date: "1987", artist_id: 1 }
       { id: 2, name: "Thriller", release_date: "1982", artist_id: 1 }
       { id: 3, name: "Sigh No More", release_date: "2009", artist_id: 2 }
       { id: 4, name: "Femme Fatale", release_date: "2010", artist_id: 4, cover_url: "/music/cover.jpg" }
+      { id: 5, name: "Korn", artist_id: 15 , cover_url: "/music/korn.jpg" }
+      { id: 6, name: "Issues", artist_id: 15, cover_url: "/music/issues.jpg" }
     ])
     Artist.refresh([
       { id: 1, name: "Michael Jackson" }
@@ -69,9 +72,10 @@ class App extends Spine.Controller
       { id: 12, name: "Fatboy Slim" }
       { id: 13, name: "Filter" }
       { id: 14, name: "Garbage" }
+      { id: 15, name: "Korn" }
     ])
     Playlist.refresh([
-      { id: 1, name: "Playlist 1", user_queue: [ 6, 7, 8, 9, 10 ] }
+      { id: 1, name: "Playlist 1", user_queue: [ 6, 13, 14, 15, 7, 8, 9, 10 ] }
     ])
 
     playlist = Playlist.first()
