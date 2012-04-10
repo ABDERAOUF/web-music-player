@@ -5,6 +5,8 @@ gem 'rails', '3.1.1'
 gem 'jquery-rails'
 gem 'spine-rails'
 
+gem 'UPnP'
+
 group :assets do
   gem 'sass', '~> 3.2.0.alpha.101'
   gem 'sass-rails',   '~> 3.1.4'

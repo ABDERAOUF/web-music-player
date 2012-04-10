@@ -1,6 +1,9 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    UPnP (1.2.0)
+      builder
+      soap4r
     actionmailer (3.1.1)
       actionpack (= 3.1.1)
       mail (~> 2.3.0)
@@ -54,6 +57,7 @@ GEM
     ffi (1.0.11)
     haml (3.1.4)
     hike (1.2.1)
+    httpclient (2.2.4)
     i18n (0.6.0)
     jasmine (1.1.2)
       jasmine-core (>= 1.1.0)
@@ -73,6 +77,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.18)
     multi_json (1.2.0)
+    nokogiri (1.5.2)
     nokogiri (1.5.2-x86-mingw32)
     polyglot (0.3.3)
     rack (1.3.6)
@@ -127,12 +132,15 @@ GEM
       ffi (~> 1.0)
       multi_json (~> 1.0)
       rubyzip
+    soap4r (1.5.8)
+      httpclient (>= 2.1.1)
     spine-rails (0.1.0)
       rails (>= 3.1.0)
     sprockets (2.0.3)
       hike (~> 1.2)
       rack (~> 1.0)
-      tilt (!= 1.3.0, ~> 1.1)
+      tilt (~> 1.1, != 1.3.0)
+    sqlite3 (1.3.5)
     sqlite3 (1.3.5-x86-mingw32)
     thor (0.14.6)
     tilt (1.3.3)
@@ -152,6 +160,7 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
+  UPnP
   coffee-rails (~> 3.1.1)
   factory_girl_rails
   faker
