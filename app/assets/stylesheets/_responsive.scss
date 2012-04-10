@@ -1,0 +1,30 @@
+$handhelds: 320px;
+$tablets: 768px;
+
+$handheldMedia: "only screen and (max-width: #{$handhelds})";
+$tabletMedia: "only screen and (min-width: #{$handhelds + 1}) and (max-width: #{$tablets})";
+$normalMedia: "only screen and (min-width: #{$tablets + 1})";
+
+@mixin respond-to($media: normal) {
+  @if $media == handhelds {
+    @media only screen and (max-width: $handhelds) { @content; }
+  }
+  @else if $media == tablets {
+    @media only screen and (min-width: $handhelds + 1) and (max-width: $tablets) { @content; }
+  }
+  @else if $media == normal {
+    @media only screen and (min-width: $tablets + 1) { @content; }
+  }
+}
+
+@mixin handheld {
+  @media only screen and (max-width: $handhelds) { @content; }
+}
+
+@mixin tablet {
+  @media only screen and (min-width: $handhelds + 1) and (max-width: $tablets) { @content; }
+}
+
+@mixin normal {
+  @media only screen and (min-width: $tablets + 1) { @content; }
+}

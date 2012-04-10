@@ -1,6 +1,7 @@
 @import "theme";
 @import "css3";
 @import "mixins";
+@import "responsive";
 @import "easing";
 
 $coverSize: 300px;
@@ -14,6 +15,10 @@ $right: ($pad / 2);
 
   nav {
     $buttonSize: 48px;
+
+    @media #{$handheldMedia} {
+      display: none;
+    }
 
     position: absolute;
     z-index: 1;
@@ -55,21 +60,30 @@ $right: ($pad / 2);
   }
 
   .details-container {
-    position: absolute;
-    width: 100%;
-    height: $coverSize;
-    margin: -($coverSize / 2) auto 0;
-    top: 50%;
+
+    @media #{$normalMedia} {
+      position: absolute;
+      width: 100%;
+      height: $coverSize;
+      margin: -($coverSize / 2) auto 0;
+      top: 50%;
+    }
+    @media #{$tabletMedia} {
+      margin-top: 10px;
+    }
 
     .album-cover {
       @include box-sizing(border-box);
-      position: absolute;
-      overflow: hidden;
-      z-index: 1;
-      height: $coverSize;
-      width: $coverSize;
-      margin-left: $left;
-      left: 50%;
+
+      @media #{$normalMedia} {
+        position: absolute;
+        overflow: hidden;
+        z-index: 1;
+        height: $coverSize;
+        width: $coverSize;
+        margin-left: $left;
+        left: 50%;
+      }
 
       @include border-radius(14px);
 
