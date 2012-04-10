@@ -10,14 +10,16 @@
     <div class="details-container">
         <div class="album-cover" style="background-image: url({{album_cover_url}})"></div>
         <div class="song-details">
+            <p class="song-name">{{name}}</p>
             <p class="album-artist-info">
                 <span class="artist-name">{{artist}}</span>
                 <span class="album-name">{{album}}</span>
             </p>
-            <p class="song-name">{{name}}</p>
-            <span class="rating {{song_rating}}-stars"></span>
             <p class="time-remaining" data-el="time-remaining"></p>
-            <p class="released">{{released_date album_release_date}}</p>
+            <div class="metadata">
+                <p class="rating {{song_rating}}-stars"></p>
+                <p class="released">{{released_date album_release_date}}</p>
+            </div>
         </div>
     </div>
 </div>
