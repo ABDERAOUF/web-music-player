@@ -1,3 +1,4 @@
+@import "theme";
 @import "css3";
 
 @mixin carbon-fibre-background($colour, $size: 4px) {
@@ -21,11 +22,11 @@
 }
 
 @mixin box-off-the-ground($distance) {
-  @include box-shadow( (0 $distance ($distance  * 3) rgba(0, 0, 0, 0.75)) );
+  @include box-shadow( (0 $distance ($distance  * 3) $shadowColour) );
 }
 
 @mixin text-off-the-ground($distance) {
-  text-shadow: 0 $distance ($distance * 3) rgba(0, 0, 0, 0.75);
+  text-shadow: 0 $distance ($distance * 3) $shadowColour;
 }
 
 @mixin gleam($borderRadius) {

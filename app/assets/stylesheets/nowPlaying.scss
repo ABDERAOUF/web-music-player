@@ -6,6 +6,7 @@
 
 $coverSize: 300px;
 $pad: 40px;
+$textColour: white;
 
 $left: -($coverSize + ($pad / 2));
 $right: ($pad / 2);
@@ -60,17 +61,12 @@ $right: ($pad / 2);
   }
 
   .details-container {
+    position: absolute;
+    width: 100%;
+    height: $coverSize;
+    margin: -($coverSize / 2) auto 0;
+    top: 50%;
 
-    @media #{$normalMedia} {
-      position: absolute;
-      width: 100%;
-      height: $coverSize;
-      margin: -($coverSize / 2) auto 0;
-      top: 50%;
-    }
-    @media #{$tabletMedia} {
-      margin-top: 10px;
-    }
 
     .album-cover {
       @include box-sizing(border-box);
@@ -83,6 +79,12 @@ $right: ($pad / 2);
         width: $coverSize;
         margin-left: $left;
         left: 50%;
+      }
+      @media #{$tabletMedia} {
+        position: relative;
+        margin: 0 auto;
+        width: $coverSize;
+        height: $coverSize;
       }
 
       @include border-radius(14px);
@@ -99,44 +101,78 @@ $right: ($pad / 2);
     }
 
     .song-details {
-      position: absolute;
-      width: $coverSize;
-      padding: $pad 0 0 0;
-      margin-left: $right;
-      left: 50%;
+      @media #{$normalMedia} {
+        position: absolute;
+        width: $coverSize;
+        padding: $pad 0 0 0;
+        margin-left: $right;
+        left: 50%;
 
-      color: white;
-      @include text-off-the-ground(5px);
-      
-      //-webkit-animation: details-position-swap 40s infinite $easeInOutCubic;
+        color: $textColour;
+        @include text-off-the-ground(5px);
 
-      .album-artist-info {
-        margin: 0 0 12px;
-        font-size: 22px;
+        //-webkit-animation: details-position-swap 40s infinite $easeInOutCubic;
 
-        .artist-name:after { content: ' - '; }
-        .album-name {}
+        .album-artist-info {
+          margin: 0 0 12px;
+          font-size: 22px;
+
+          .artist-name:after { content: ' - '; }
+          .album-name {}
+        }
+
+        .song-name {
+          overflow: hidden;
+          margin: 0;
+
+          font-size: 36px;
+          font-weight: 700;
+          white-space: nowrap;
+        }
+
+        .time-remaining {
+          font-size: 20px;
+          font-weight: 600;
+          color: #dedede;
+        }
+
+        .release-date {
+          color: #aaaaaa;
+          font-size: 13px;
+          font-weight: 600;
+        }
       }
 
-      .song-name {
-        overflow: hidden;
-        margin: 0;
+      @media #{$tabletMedia} {
+        position: absolute;
+        width: $coverSize;
+        height: 100px;
+        margin-left: -($coverSize / 2);
+        bottom: 0;
+        left: 50%;
 
-        font-size: 36px;
-        font-weight: 700;
-        white-space: nowrap;
-      }
+        @include text-off-the-ground(2px);
 
-      .time-remaining {
-        font-size: 20px;
-        font-weight: 600;
-        color: #dedede;
-      }
+        @include border-radius-bottom-right(14px);
+        @include border-radius-bottom-left(14px);
 
-      .release-date {
-        color: #aaaaaa;
-        font-size: 13px;
-        font-weight: 600;
+        @include linear-gradient(rgba(0, 0, 0, 0.7), 0%, rgba(0, 0, 0, 0.9), 100%);
+        @include box-shadow( (0 -3px 3px -3px $shadowColour, inset 0 0 1px 1px rgba(255, 255, 255, 0.5)) );
+
+        .album-artist-info {
+          display: none;
+          text-align: center;
+        }
+
+        .song-name {
+          margin: 20px 0 0;
+          font-size: 18px;
+          font-weight: 700;
+
+          text-align: center;
+          color: $textColour;
+        }
+        .release-date { display: none; }
       }
     }
   }
