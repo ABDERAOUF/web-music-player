@@ -6,6 +6,7 @@ class CreateAlbums < ActiveRecord::Migration
       t.integer :rating
       t.date :release_date
       t.string :cover_url
+      t.references :artist
 
       t.timestamps
     end

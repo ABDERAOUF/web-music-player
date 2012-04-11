@@ -5,6 +5,7 @@ class CreateSongs < ActiveRecord::Migration
       t.string :sort_name
       t.integer :rating
       t.string :url
+      t.references :album
 
       t.timestamps
     end
