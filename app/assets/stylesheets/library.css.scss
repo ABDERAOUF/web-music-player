@@ -1,0 +1,11 @@
+@import "css3";
+
+#library {
+  @include box-sizing(border-box);
+  position: relative;
+  width: 800px;
+  padding: 40px;
+  margin: 80px auto;
+
+  background: white;
+}

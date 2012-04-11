@@ -7,4 +7,6 @@
  *
  *= require playlist
  *= require nowPlaying
+ *
+ *= require_directory .
 */
