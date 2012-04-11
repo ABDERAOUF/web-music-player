@@ -5,5 +5,5 @@ class Album < ActiveRecord::Base
   validates :rating, :inclusion => { :in => 0..5 }
 
   belongs_to :artist
-  has_many :songs
+  has_many :songs, :dependent => :destroy
 end
