@@ -6,6 +6,7 @@ gem 'jquery-rails'
 gem 'spine-rails'
 
 gem 'taglib-ruby'
+gem 'paperclip', '~> 3.0'
 
 group :assets do
   gem 'sass', '~> 3.2.0.alpha.101'
