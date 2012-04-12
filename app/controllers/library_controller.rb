@@ -20,17 +20,18 @@ class LibraryController < ApplicationController
       #cover.picture
 
       artist = Artist.find_by_name artist_name
-      artist ||= Artist.new({ :name => artist_name })
+      artist ||= Artist.new(:name => artist_name)
       artist.save
       artist = Artist.find_by_name artist_name
 
       album = artist.albums.find_by_name album_name
-      #album ||= artist.albums.build({ :name => album_name }) #, :album_year => album_year
-      album ||= Album.new({ :artist_id => artist.id, :name => album_name })
+      album ||= artist.albums.build(:name => album_name) #, :album_year => album_year
       album.save
 
       @song = album.songs.find_by_name song_name
-      @song ||= album.songs.build({ :name => song_name })
+      @song ||= album.songs.build(:name => song_name,
+                                  :track_number => song_track_number,
+                                  :rating => 0)
       @song.save
     end
 
