@@ -1,37 +1,29 @@
 class LibraryController < ApplicationController
   require 'TagLib'
-  root = '//sara/music'
 
   def index
-    test_mp3 = '//sara/music/Aerosmith/Pump/10 What It Takes.mp3'
-    TagLib::FileRef.open test_mp3 do |file|
+    albumFolder = "//sara/music/Aerosmith/Pandora's Box Disc 1/"
+    cover_art = albumFolder + "Folder.jpg"
+    song_file = albumFolder + "02 Make It.mp3"
+
+    TagLib::FileRef.open song_file do |file|
       tag = file.tag
 
-      artist_name = tag.artist
-
-      album_name = tag.album
-      album_year = tag.year
-
-      song_name = tag.title
-      song_track_number = tag.track
-      # Store rating and play count separately
-
-      #cover = tag.frame_list('APIC').first
-      #cover.picture
-
-      artist = Artist.find_by_name artist_name
-      artist ||= Artist.new(:name => artist_name)
+      artist = Artist.find_by_name tag.artist
+      artist ||= Artist.new(:name => tag.artist)
       artist.save
-      artist = Artist.find_by_name artist_name
 
-      album = artist.albums.find_by_name album_name
-      album ||= artist.albums.build(:name => album_name) #, :album_year => album_year
+      album = artist.albums.find_by_name tag.album
+      album ||= artist.albums.build(:name => tag.album,
+                                    :release_date => tag.year)
+      album.cover = File.open(cover_art)
       album.save
 
-      @song = album.songs.find_by_name song_name
-      @song ||= album.songs.build(:name => song_name,
-                                  :track_number => song_track_number,
-                                  :rating => 0)
+      @song = album.songs.find_by_name tag.title
+      @song ||= album.songs.build(:name => tag.title,
+                                  :track_number => tag.track,
+                                  :rating => 0,
+                                  :play_count => 0)
       @song.save
     end
 
