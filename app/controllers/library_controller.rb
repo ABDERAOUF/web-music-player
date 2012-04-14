@@ -1,9 +1,8 @@
 class LibraryController < ApplicationController
-  require 'TagLib'
 
   def index
-    album_folder = "//sara/music/Aerosmith/Pandora's Box Disc 1/"
+    album_folder = "//sara/music/Aerosmith"
 
-    Library.new.scan(album_folder)
+    @new_songs = FolderLibrary.new.find_new_songs(album_folder)
   end
 end
