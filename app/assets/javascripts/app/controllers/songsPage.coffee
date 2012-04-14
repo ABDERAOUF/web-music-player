@@ -33,6 +33,7 @@ class SongsPage extends Spine.Controller
 
   showAll: ->
     @item = $.map(Song.all(), (song) -> song.flatten())
+    @item = @item.sort(Util.sortBy("track", true))
     @render(songs: @item)
     @active()
 
@@ -42,9 +43,8 @@ class SongsPage extends Spine.Controller
     for album in artist.albums().all()
       for song in album.songs().all()
         @item.push(song.flatten())
-    @item = @item.sort(Util.sortBy("name", true))
 
-    #TODO: Sort the songs alphabetically
+    @item = @item.sort(Util.sortBy("name", true))
 
     @render(songs: @item, filter: artist)
     @active()
@@ -52,6 +52,7 @@ class SongsPage extends Spine.Controller
   showAllByAlbum: (albumId) ->
     album = Album.find(albumId)
     @item = $.map(album.songs().all(), (song) -> song.flatten())
+    @item = @item.sort(Util.sortBy("track", true))
     @render(songs: @item, filter: album)
     @active()
 

@@ -20,17 +20,17 @@ class ArtistsPage extends Spine.Controller
 
   constructor: ->
     super
-    Artist.bind "refresh", => @showAll()
+    Artist.bind "refresh", => @update()
 
     @routes
       "/artists": => @showAll()
 
-  update: -> @render(artists: @items)
+  update: ->
+    @item = Artist.all() || []
+    @item = @item.sort(Util.sortBy("name", true))
+    @render()
 
-  showAll: ->
-    @items = Artist.all()
-    @update()
-    @active()
+  showAll: -> @active()
 
   showAllAlbums: (e) ->
     @navigate "/albums"

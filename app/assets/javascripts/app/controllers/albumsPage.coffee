@@ -23,18 +23,24 @@ class AlbumsPage extends Spine.Controller
   constructor: ->
     super
 
+    Album.bind "refresh", => @update()
+
     @routes
       "/albums/artist/:artistId": (params) => @showAllByArtist(params.artistId)
       "/albums": => @showAll()
 
+  update: ->
+
   showAll: ->
     @item = $.map(Album.all(), (album) -> album.flatten())
+    @item = @item.sort(Util.sortBy("name", true))
     @render(albums: @item)
     @active()
 
   showAllByArtist: (artistId) ->
     artist = Artist.find(artistId)
     @item = $.map(artist.albums().all(), (album) -> album.flatten())
+    @item = @item.sort(Util.sortBy("name", true))
     @render(artist: artist, albums: @item)
     @active()
 
