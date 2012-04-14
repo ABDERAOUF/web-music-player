@@ -21,7 +21,10 @@ class FolderLibrary
       tag = file_ref.tag
       artist = process_artist(tag)
       album = process_album(artist, tag)
-      song = process_song(album, tag)
+
+      dir = File.dirname(file)
+
+      song = process_song(dir, album, tag)
 
       new_song = song unless song.nil?
     end
@@ -33,35 +36,47 @@ class FolderLibrary
 
   def process_artist(tag)
     artist = Artist.find_by_name tag.artist
+
     if artist.nil?
       artist = Artist.new(:name => tag.artist)
-      artist.save
+      artist.save!
     end
+
     artist
   end
 
   def process_album(artist, tag)
+    params = {:name => tag.album,
+              :release_date => tag.year}
+
     album = artist.albums.find_by_name tag.album
+
     if album.nil?
-      album = artist.albums.build(:name => tag.album,
-                                  :release_date => tag.year)
+      album = artist.albums.build(params)
     else
-      album.release_date = tag.year
+      album.update_attributes(params)
     end
-    album.cover = File.open(COVER_ART)
-    album.save
+
+    album.save!
+    album
   end
 
-  def process_song(album, tag)
+  def process_song(dir, album, tag)
+    params = {:name => tag.title,
+              :track_number => tag.track,
+              :rating => 0,
+              :play_count => 0}
+
     song = album.songs.find_by_name tag.title
+
     if song.nil?
-      song ||= album.songs.build(:name => tag.title,
-                                 :track_number => tag.track,
-                                 :rating => 0,
-                                 :play_count => 0)
-      song.save
+      song ||= album.songs.build(params)
     else
-      nil
+      song.update_attributes(params)
     end
+
+    song.album.cover = File.open("#{dir}/#{COVER_ART}", "r")
+    song.save!
+    song
   end
 end
