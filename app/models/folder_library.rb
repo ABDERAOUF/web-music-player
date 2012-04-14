@@ -63,9 +63,7 @@ class FolderLibrary
 
   def process_song(dir, album, tag)
     params = {:name => tag.title,
-              :track_number => tag.track,
-              :rating => 0,
-              :play_count => 0}
+              :track_number => tag.track}
 
     song = album.songs.find_by_name tag.title
 

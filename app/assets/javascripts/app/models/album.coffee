@@ -1,4 +1,5 @@
 #= require spine
+#= require spine/ajax
 #= require spine/relation
 
 class Album extends Spine.Model
@@ -8,6 +9,8 @@ class Album extends Spine.Model
     "rating",
     "release_date",
     "cover_url"
+
+  @extend Spine.Model.Ajax
 
   @belongsTo "artist", "Artist"
   @hasMany "songs", "Song"

@@ -1,4 +1,5 @@
 #= require spine
+#= require spine/ajax
 #= require spine/relation
 
 class Playlist extends Spine.Model
@@ -8,8 +9,7 @@ class Playlist extends Spine.Model
     "user_queue",
     "auto_queue"
 
-  constructor: ->
-    super
+  @extend Spine.Model.Ajax
 
   add: (song) ->
     if song not instanceof Song
