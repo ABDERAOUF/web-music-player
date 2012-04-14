@@ -37,7 +37,11 @@ class SongsPage extends Spine.Controller
 
   showAllByArtist: (artistId) ->
     artist = Artist.find(artistId)
-    @item = artist.songs().all()
+    albums = artist.albums().all()
+    # TODO: Get an array of all songs from all albums
+    @item = for album in albums
+      album.songs().all()
+
     @render(songs: @item, filter: artist)
     @active()
 
