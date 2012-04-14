@@ -11,11 +11,9 @@ class Song extends Spine.Model
 
   @extend Spine.Model.Ajax
 
-  @belongsTo "artist", "Artist"
   @belongsTo "album", "Album"
 
   flatten: ->
-    artist = @artist()
     album = @album()
 
     id: @id
@@ -25,6 +23,6 @@ class Song extends Spine.Model
     album: album.name
     album_cover_url: album.cover_url
     album_release_date: album.release_date
-    artist: artist.name
+    artist: album.artist().name
 
 window.Song = Song
