@@ -2,6 +2,7 @@
 #= require spine
 
 #= require handlebars.template
+#= require util
 
 #= require app/models/artist
 #= require app/models/album
@@ -31,23 +32,26 @@ class SongsPage extends Spine.Controller
 
 
   showAll: ->
-    @item = Song.all()
+    @item = $.map(Song.all(), (song) -> song.flatten())
     @render(songs: @item)
     @active()
 
   showAllByArtist: (artistId) ->
     artist = Artist.find(artistId)
-    albums = artist.albums().all()
-    # TODO: Get an array of all songs from all albums
-    @item = for album in albums
-      album.songs().all()
+    @item = []
+    for album in artist.albums().all()
+      for song in album.songs().all()
+        @item.push(song.flatten())
+    @item = @item.sort(Util.sortBy("name", true))
+
+    #TODO: Sort the songs alphabetically
 
     @render(songs: @item, filter: artist)
     @active()
 
   showAllByAlbum: (albumId) ->
     album = Album.find(albumId)
-    @item = album.songs().all()
+    @item = $.map(album.songs().all(), (song) -> song.flatten())
     @render(songs: @item, filter: album)
     @active()
 
