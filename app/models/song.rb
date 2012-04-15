@@ -1,5 +1,5 @@
 class Song < ActiveRecord::Base
-  attr_accessible :name, :sort_name, :rating, :url
+  attr_accessible :name, :sort_name, :rating, :play_count, :track_number, :src_url
 
   validates :name, :presence => true
   validates :rating, :inclusion => { :in => 0..5 }

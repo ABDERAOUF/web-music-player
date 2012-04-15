@@ -7,7 +7,9 @@ class Song extends Spine.Model
     "name",
     "sort_name",
     "rating",
-    "url"
+    "play_count",
+    "track_number",
+    "src_url"
 
   @extend Spine.Model.Ajax
 
