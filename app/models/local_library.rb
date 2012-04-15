@@ -7,7 +7,7 @@ class LocalLibrary
   def find_new_songs(location)
     songs_processed = []
 
-    Dir.glob(location + "/**/*.mp3").each do |file|
+    Dir.glob(location + "/**/*.m4a").each do |file|
       song = process_file(file)
       songs_processed.push(song) unless song.nil?
     end
@@ -63,7 +63,7 @@ class LocalLibrary
     album = artist.albums.find_by_name tag.album
 
     if album.nil?
-      album = artist.build_album(params)
+      album = artist.albums.build(params)
     else
       album.update_attributes(params)
     end
@@ -80,15 +80,15 @@ class LocalLibrary
 
     # New or update
     if song.nil?
-      song = album.build_song(params)
+      song = album.songs.build(params)
     else
       song.update_attributes(params)
     end
 
     # Attach cover art
-    cover = File.open("#{dir}/#{COVER_ART}", "r")
-    if cover
-      song.album.cover = cover
+    cover_art_file = "#{dir}/#{COVER_ART}"
+    if File.exists?(cover_art_file)
+      song.album.cover = File.open(cover_art_file, "r")
     end
 
     song.save!
