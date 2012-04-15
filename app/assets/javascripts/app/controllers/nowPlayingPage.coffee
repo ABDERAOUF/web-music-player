@@ -19,20 +19,20 @@ class NowPlayingPage extends Spine.Controller
   constructor: ->
     super
 
-    @audioControl.bind "songchange", @proxy(@update)
-    @audioControl.bind "timeupdate", @proxy(@updateTimeRemaining)
+    @audioControl.bind "songchange", (song) => @update(song)
+    @audioControl.bind "timeupdate", (time) => @updateTimeRemaining(time)
 
     @routes
       "/now-playing": => @active()
 
   goToArtists: -> @navigate "/artists"
 
-  activated: ->
-    @el.addClass "active"
+  activate: ->
+    @el.addClass("active")
     @render()
 
-  update: ->
-    @item = @audioControl.currentSong?.flatten()
+  update: (song) ->
+    @item = song.flatten()
     @render()
     @updateTimeRemaining @audioControl.currentTime()
     this

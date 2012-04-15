@@ -20,10 +20,14 @@ class PlaylistPage extends Spine.Controller
 
     @playlist.bind "song.added", => @update()
     @audioControl.bind "songchange", => @update()
-    @audioControl.bind "timeupdate", => @updateTimeRemaining()
+    @audioControl.bind "timeupdate", (time) => @updateTimeRemaining(time)
 
     @routes
       "/playlist": => @active()
+
+  activate: ->
+    @el.addClass("active")
+    @render()
 
   update: ->
     @render
