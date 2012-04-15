@@ -32,8 +32,9 @@ class ArtistsController < ApplicationController
   end
 
   def songs
-    artist = Artist.find(params[:id])
-    respond_with artist.songs
+    # TODO: Artist no longer has_many songs, need to go through the albums
+    #artist = Artist.find(params[:id])
+    #respond_with artist.songs
   end
 
 end

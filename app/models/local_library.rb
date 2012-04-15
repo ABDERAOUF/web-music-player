@@ -33,8 +33,10 @@ class LocalLibrary
       else
         local_song.update_attributes(params)
       end
-      local_song.song.src_url = "local-songs/#{local_song.id}/download"
       local_song.save!
+
+      song.src_url = "local-songs/#{local_song.id}/download"
+      song.save!
 
       processed_song = song unless song.nil?
     end
@@ -61,7 +63,7 @@ class LocalLibrary
     album = artist.albums.find_by_name tag.album
 
     if album.nil?
-      album = artist.albums.build(params)
+      album = artist.build_album(params)
     else
       album.update_attributes(params)
     end
@@ -78,7 +80,7 @@ class LocalLibrary
 
     # New or update
     if song.nil?
-      song = album.songs.build(params)
+      song = album.build_song(params)
     else
       song.update_attributes(params)
     end
