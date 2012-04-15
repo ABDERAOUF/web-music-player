@@ -25,6 +25,9 @@ class SongsPage extends Spine.Controller
   constructor: ->
     super
 
+    # For now, updates don't refresh the view
+    #Song.bind "refresh", => @update()
+
     @routes
       "/songs/artist/:artistId": (params) => @showAllByArtist(params.artistId)
       "/songs/album/:albumId": (params) => @showAllByAlbum(params.albumId)
@@ -32,28 +35,28 @@ class SongsPage extends Spine.Controller
 
 
   showAll: ->
-    @item = $.map(Song.all(), (song) -> song.flatten())
-    @item = @item.sort(Util.sortBy("track", true))
-    @render(songs: @item)
+    songs = $.map(Song.all(), (song) -> song.flatten())
+    songs = songs.sort(Util.sortBy("track", true))
+    @render(songs: songs)
     @active()
 
   showAllByArtist: (artistId) ->
     artist = Artist.find(artistId)
-    @item = []
+    songs = []
     for album in artist.albums().all()
       for song in album.songs().all()
-        @item.push(song.flatten())
+        songs.push(song.flatten())
 
-    @item = @item.sort(Util.sortBy("name", true))
+    songs = songs.sort(Util.sortBy("name", true))
 
-    @render(songs: @item, filter: artist)
+    @render(songs: songs, filter: artist)
     @active()
 
   showAllByAlbum: (albumId) ->
     album = Album.find(albumId)
-    @item = $.map(album.songs().all(), (song) -> song.flatten())
-    @item = @item.sort(Util.sortBy("track", true))
-    @render(songs: @item, filter: album)
+    songs = $.map(album.songs().all(), (song) -> song.flatten())
+    songs = songs.sort(Util.sortBy("track", true))
+    @render(songs: songs, filter: album)
     @active()
 
   addSongToPlaylist: (e) ->

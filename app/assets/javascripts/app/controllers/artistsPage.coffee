@@ -15,27 +15,28 @@ class ArtistsPage extends Spine.Controller
     ".artist-list": "$artistList"
 
   events:
-    "click .artist-list .show-all": "showAllAlbums"
-    "click .artist-list .artist": "showAlbumsByArtist"
+    "click .artist-list .show-all": "goToAllAlbums"
+    "click .artist-list .artist": "goToAlbumsByArtist"
 
   constructor: ->
     super
-    Artist.bind "refresh", => @update()
+
+    # For now, updates don't refresh the view
+    #Artist.bind "refresh", => @update()
 
     @routes
       "/artists": => @showAll()
 
-  update: ->
-    @item = Artist.all() || []
-    @item = @item.sort(Util.sortBy("name", true))
-    @render()
+  showAll: ->
+    artists = Artist.all() || []
+    artists = artists.sort(Util.sortBy("name", true))
+    @render(artists: artists)
+    @active()
 
-  showAll: -> @active()
-
-  showAllAlbums: (e) ->
+  goToAllAlbums: (e) ->
     @navigate "/albums"
 
-  showAlbumsByArtist: (e) ->
+  goToAlbumsByArtist: (e) ->
     artistId = $(e.currentTarget).data("artist-id")
     @navigate "/albums/artist/#{artistId}"
 

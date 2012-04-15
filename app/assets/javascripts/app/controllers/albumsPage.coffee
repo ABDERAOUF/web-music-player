@@ -16,42 +16,43 @@ class AlbumsPage extends Spine.Controller
     ".album-list": "$albumList"
 
   events:
-    "click .album-list .show-all": "showAllSongs"
-    "click .album-list .show-all-by-artist": "showSongsByArtist"
-    "click .album-list .album": "showSongsByAlbum"
+    "click .album-list .show-all": "goToAllSongs"
+    "click .album-list .show-all-by-artist": "goToSongsByArtist"
+    "click .album-list .album": "goToSongsByAlbum"
 
   constructor: ->
     super
 
-    Album.bind "refresh", => @update()
+    # For now, updates don't refresh the view
+    #Album.bind "refresh", => @update()
 
     @routes
       "/albums/artist/:artistId": (params) => @showAllByArtist(params.artistId)
       "/albums": => @showAll()
 
-  update: ->
-
   showAll: ->
-    @item = $.map(Album.all(), (album) -> album.flatten())
-    @item = @item.sort(Util.sortBy("name", true))
-    @render(albums: @item)
+    @currentFilter = "all"
+    albums = $.map(Album.all(), (album) -> album.flatten())
+    albums = albums.sort(Util.sortBy("name", true))
+    @render(albums: albums)
     @active()
 
   showAllByArtist: (artistId) ->
+    @currentFilter = "artist"
     artist = Artist.find(artistId)
-    @item = $.map(artist.albums().all(), (album) -> album.flatten())
-    @item = @item.sort(Util.sortBy("name", true))
-    @render(artist: artist, albums: @item)
+    albums = $.map(artist.albums().all(), (album) -> album.flatten())
+    albums = albums.sort(Util.sortBy("name", true))
+    @render(artist: artist, albums: albums)
     @active()
 
-  showAllSongs: (e) ->
+  goToAllSongs: (e) ->
     @navigate "/songs"
 
-  showSongsByArtist: (e) ->
+  goToSongsByArtist: (e) ->
     artistId = $(e.currentTarget).data("artist-id")
     @navigate "/songs/artist/#{artistId}"
 
-  showSongsByAlbum: (e) ->
+  goToSongsByAlbum: (e) ->
     albumId = $(e.currentTarget).data("album-id")
     @navigate "/songs/album/#{albumId}"
 
