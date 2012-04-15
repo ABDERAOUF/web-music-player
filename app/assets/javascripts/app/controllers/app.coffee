@@ -26,7 +26,7 @@ class App extends Spine.Controller
 
     ###
 
-    playlist = Playlist.first() || new Playlist()
+    playlist = Playlist.first() || new Playlist(name: "Playlist")
     audioControl = new Html5AudioControl()
 
     # Initialise main pages

@@ -7,10 +7,11 @@ class SongFeeder extends Spine.Module
     super
 
     @playlist = playlist
-    @audioControl = audio
+    @playlist.bind "song.added", => @nextSongIfEmpty()
 
-    @audioControl.bind "ended", @proxy(@nextSong)
-    @audioControl.bind "abort, error", @proxy(@nextSong)
+    @audioControl = audio
+    @audioControl.bind "ended", => @nextSong()
+    @audioControl.bind "abort, error", => @nextSong()
 
   start: -> @nextSong()
 
@@ -25,5 +26,8 @@ class SongFeeder extends Spine.Module
       @playlistEmpty = true
 
     this
+
+  nextSongIfEmpty: ->
+    @nextSong() unless @audioControl.currentSong
 
 window.SongFeeder = SongFeeder

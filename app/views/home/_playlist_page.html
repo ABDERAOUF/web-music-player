@@ -10,6 +10,7 @@
 
 <div class="content" data-role="content">
     <ul class="ui-content-list double-line songs">
+        {{#if now_playing}}
         {{#with now_playing}}
         <li class="ui-content-list-item now-playing">
             <p class="caption song-title">{{name}}</p>
@@ -20,6 +21,11 @@
             <p class="count time-remaining" data-el="time-remaining"></p>
         </li>
         {{/with}}
+        {{else}}
+        <li class="ui-content-list-item now-playing">
+            <p class="caption">No song</p>
+        </li>
+        {{/if}}
         <li class="ui-content-list-divider">User Added</li>
         {{#each user_queue}}
         <li class="ui-content-list-item song">

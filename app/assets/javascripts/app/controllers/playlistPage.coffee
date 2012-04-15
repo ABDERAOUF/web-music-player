@@ -18,24 +18,20 @@ class PlaylistPage extends Spine.Controller
   constructor: ->
     super
 
-    @playlist.bind "song.added", @proxy(@update)
-    @audioControl.bind "songchange", @proxy(@update)
-    @audioControl.bind "timeupdate", @proxy(@updateTimeRemaining)
+    @playlist.bind "song.added", => @update()
+    @audioControl.bind "songchange", => @update()
+    @audioControl.bind "timeupdate", => @updateTimeRemaining()
 
     @routes
       "/playlist": => @active()
 
   update: ->
-    if @audioControl.currentSong
-      @item =
-        playlist_name: @playlist.name
-        now_playing: @audioControl.currentSong.flatten()
-        user_queue: $.map(@playlist.userQueue(), (song) -> song.flatten())
-        auto_queue: $.map(@playlist.autoQueue(), (song) -> song.flatten())
-    else
-      @item = null
+    @render
+      playlist_name: @playlist.name
+      now_playing: @audioControl.currentSong?.flatten()
+      user_queue: $.map(@playlist.userQueue(), (song) -> song.flatten())
+      auto_queue: $.map(@playlist.autoQueue(), (song) -> song.flatten())
 
-    @render()
     @updateTimeRemaining @audioControl.currentTime()
     this
 
