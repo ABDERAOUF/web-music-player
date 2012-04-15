@@ -15,17 +15,17 @@ class LocalLibrary
     songs_processed
   end
 
-  def process_file(file)
+  def process_file(file_name)
     processed_song = nil
 
-    TagLib::FileRef.open(file) do |file_ref|
+    TagLib::FileRef.open(file_name) do |file_ref|
       tag = file_ref.tag
 
       artist = process_artist(tag)
       album = process_album(artist, tag)
-      song = process_song(file, album, tag)
+      song = process_song(file_name, album, tag)
 
-      params = {:location => File.filename(file)}
+      params = {:location => file_name}
 
       local_song = LocalSong.find_by_song_id song.id
       if local_song.nil?
@@ -33,6 +33,7 @@ class LocalLibrary
       else
         local_song.update_attributes(params)
       end
+      local_song.song.src_url = local_song_url
       local_song.save!
 
       processed_song = song unless song.nil?
@@ -87,9 +88,6 @@ class LocalLibrary
     if cover
       song.album.cover = cover
     end
-
-    # Set song URL
-    #song.src_url = songs_play_url()
 
     song.save!
     song

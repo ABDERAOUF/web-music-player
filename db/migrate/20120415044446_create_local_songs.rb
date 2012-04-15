@@ -1,7 +1,7 @@
 class CreateLocalSongs < ActiveRecord::Migration
   def change
     create_table :local_songs do |t|
-      t.location :string
+      t.string :location
       t.references :song
 
       t.timestamps

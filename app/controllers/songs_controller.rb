@@ -25,6 +25,4 @@ class SongsController < ApplicationController
     song.destroy
     respond_with :status => :ok
   end
-
-
 end

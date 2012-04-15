@@ -1,0 +1,2 @@
+module LocalSongsHelper
+end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120415042105) do
+ActiveRecord::Schema.define(:version => 20120415044446) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -34,6 +34,15 @@ ActiveRecord::Schema.define(:version => 20120415042105) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "local_songs", :force => true do |t|
+    t.string   "location"
+    t.integer  "song_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "local_songs", ["song_id"], :name => "index_local_songs_on_song_id"
 
   create_table "songs", :force => true do |t|
     t.string   "name"
