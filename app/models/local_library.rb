@@ -4,7 +4,7 @@ class LocalLibrary
 
   COVER_ART = "Folder.jpg"
 
-  def find_new_songs(location)
+  def process_folder(location)
     songs_processed = []
 
     Dir.glob(location + "/**/*.mp3").each do |file|

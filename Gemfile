@@ -6,7 +6,13 @@ gem 'jquery-rails'
 gem 'spine-rails'
 
 gem 'taglib-ruby'
+
+#gem 'rmagick', '~> 2.13.1'
 gem 'paperclip', '~> 3.0'
+
+gem 'daemons'
+gem 'delayed_job', '~> 3.0.2'
+gem 'delayed_job_active_record'
 
 group :assets do
   gem 'sass', '~> 3.2.0.alpha.101'
