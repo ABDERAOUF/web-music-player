@@ -1,4 +1,4 @@
-class FolderLibrary
+class LocalLibrary
   require 'taglib'
   include Rails.application.routes.url_helpers
 
@@ -24,6 +24,16 @@ class FolderLibrary
       artist = process_artist(tag)
       album = process_album(artist, tag)
       song = process_song(file, album, tag)
+
+      params = {:location => File.filename(file)}
+
+      local_song = LocalSong.find_by_song_id song.id
+      if local_song.nil?
+        local_song = LocalSong.new(params)
+      else
+        local_song.update_attributes(params)
+      end
+      local_song.save!
 
       processed_song = song unless song.nil?
     end
@@ -79,7 +89,7 @@ class FolderLibrary
     end
 
     # Set song URL
-    song.src_url = songs_play_url()
+    #song.src_url = songs_play_url()
 
     song.save!
     song

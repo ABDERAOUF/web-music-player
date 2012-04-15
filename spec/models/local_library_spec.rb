@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe FolderLibrary do
+describe LocalLibrary do
   pending "add some tests"
 end
