@@ -25,7 +25,7 @@ class LocalLibrary
       album = process_album(artist, tag)
       song = process_song(file_name, album, tag)
 
-      params = {:location => file_name}
+      params = {:song_id => song.id, :location => file_name}
 
       local_song = LocalSong.find_by_song_id song.id
       if local_song.nil?
@@ -33,7 +33,7 @@ class LocalLibrary
       else
         local_song.update_attributes(params)
       end
-      local_song.song.src_url = local_song_url
+      local_song.song.src_url = "local-songs/#{local_song.id}/download"
       local_song.save!
 
       processed_song = song unless song.nil?

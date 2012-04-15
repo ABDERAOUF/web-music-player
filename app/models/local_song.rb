@@ -1,5 +1,5 @@
 class LocalSong < ActiveRecord::Base
-  attr_accessible :location
+  attr_accessible :song_id, :location
 
-  belongs_to :song
+  has_one :song
 end
