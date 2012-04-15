@@ -11,12 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120412095143) do
+ActiveRecord::Schema.define(:version => 20120415042105) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
     t.string   "sort_name"
-    t.date     "release_date"
+    t.date     "year"
     t.integer  "artist_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(:version => 20120412095143) do
     t.string   "name"
     t.string   "sort_name"
     t.integer  "rating"
-    t.string   "url"
+    t.string   "src_url"
     t.integer  "album_id"
     t.datetime "created_at"
     t.datetime "updated_at"

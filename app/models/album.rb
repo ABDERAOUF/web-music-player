@@ -1,5 +1,5 @@
 class Album < ActiveRecord::Base
-  attr_accessible :name, :sort_name, :release_date
+  attr_accessible :name, :sort_name, :year
 
   validates :name, :presence => true
 

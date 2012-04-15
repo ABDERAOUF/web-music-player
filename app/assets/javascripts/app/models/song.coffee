@@ -24,7 +24,7 @@ class Song extends Spine.Model
     rating: @rating,
     album: album.name
     album_cover_url: album.cover_url
-    album_release_date: album.release_date
+    album_year: album.year
     artist: album.artist().name
 
 window.Song = Song

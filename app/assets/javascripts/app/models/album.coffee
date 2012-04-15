@@ -7,7 +7,7 @@ class Album extends Spine.Model
     "name",
     "sort_name",
     "rating",
-    "release_date",
+    "year",
     "cover_url"
 
   @extend Spine.Model.Ajax
@@ -22,7 +22,7 @@ class Album extends Spine.Model
     name: @name
     sort_name: @sort_name
     rating: @rating,
-    release_date: @release_date
+    year: @year
     cover_url: @cover_url
     artist: artist.name
 
