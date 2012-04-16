@@ -7,7 +7,7 @@ class LocalLibrary
   def find_new_songs(location)
     songs_processed = []
 
-    Dir.glob(location + "/**/*.m4a").each do |file|
+    Dir.glob(location + "/**/*.{ogg,mp3,m4a,wav}").each do |file|
       song = process_file(file)
       songs_processed.push(song) unless song.nil?
     end
@@ -35,6 +35,7 @@ class LocalLibrary
       end
       local_song.save!
 
+      # TODO: Use url helper to generate proper URL
       song.src_url = "local-songs/#{local_song.id}/download"
       song.save!
 
@@ -86,11 +87,15 @@ class LocalLibrary
     end
 
     # Attach cover art
+    # TODO: Better way of finding cover art?
     cover_art_file = "#{dir}/#{COVER_ART}"
     if File.exists?(cover_art_file)
       song.album.cover = File.open(cover_art_file, "r")
+    else
+      song.album.cover = nil
     end
 
+    song.album.save!
     song.save!
     song
   end
