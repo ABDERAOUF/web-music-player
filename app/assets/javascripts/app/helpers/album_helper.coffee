@@ -23,3 +23,10 @@ Handlebars.registerHelper "all_songs_item", ->
     data = ""
 
   "<li class=\"ui-content-list-item #{c}\"#{data}><p class=\"caption\">#{label}</p><p class=\"count\">#{count} Songs</p></li>"
+
+Handlebars.registerHelper "album_song_count", ->
+  album = Album.find(this.id)
+  songCount = album.songs().all().length
+  songWord = if songCount == 1 then "song" else "songs"
+
+  "#{songCount} #{songWord}"
