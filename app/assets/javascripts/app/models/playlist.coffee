@@ -20,6 +20,7 @@ class Playlist extends Spine.Model
 
     @user_queue.push(song.id)
     @trigger "song.added", song
+    song.played()
     this
 
   addAlbum: (album) ->

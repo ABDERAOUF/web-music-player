@@ -27,4 +27,8 @@ class Song extends Spine.Model
     album_year: album.year
     artist: album.artist().name
 
+  played: ->
+    # TODO: Send AJAX request to songs/id/played
+    this
+
 window.Song = Song

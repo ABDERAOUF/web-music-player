@@ -25,4 +25,10 @@ class SongsController < ApplicationController
     song.destroy
     respond_with :status => :ok
   end
+
+  def played
+    song = Song.find(params[:id])
+    song.played
+    respond_with song
+  end
 end

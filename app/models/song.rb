@@ -11,4 +11,9 @@ class Song < ActiveRecord::Base
     self.rating     ||= 0
     self.play_count ||= 0
   end
+
+  def played
+    self.play_count += 1
+    self.save!
+  end
 end
