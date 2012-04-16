@@ -10,4 +10,12 @@ class Album < ActiveRecord::Base
                     :styles => {
                         :large => '300x300>',
                         :thumb => '48x48#' }
+
+  def cover_url
+    self.cover.url(:large)
+  end
+
+  def cover_thumb_url
+    self.cover.url(:thumb)
+  end
 end

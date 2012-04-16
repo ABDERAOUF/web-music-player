@@ -1,6 +1,7 @@
 class AlbumsController < ApplicationController
   def index
-    respond_with Album.all()
+    albums = Album.all()
+    respond_with albums.to_json(:methods => [:cover_url])
   end
 
   def create
