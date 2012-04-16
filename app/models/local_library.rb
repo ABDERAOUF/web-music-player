@@ -35,7 +35,7 @@ class LocalLibrary
       end
       local_song.save!
 
-      # TODO: Use url helper to generate proper URL
+      # TODO: How best to handle this requirement?
       song.src_url = "local-songs/#{local_song.id}/download"
       song.save!
 
