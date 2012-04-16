@@ -1,8 +1,8 @@
 class LibraryController < ApplicationController
 
   def index
-    album_folder = "//sara/Music/Aerosmith"
+    album_folder = "//sara/Music/Michael Jackson"
 
-    @songs_processed = LocalLibrary.new.find_new_songs(album_folder)
+    @songs_processed = LocalLibrary.new.scan(album_folder)
   end
 end

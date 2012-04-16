@@ -4,7 +4,7 @@ class LocalLibrary
 
   COVER_ART = "Folder.jpg"
 
-  def find_new_songs(location)
+  def scan(location)
     songs_processed = []
 
     Dir.glob(location + "/**/*.{ogg,mp3,m4a,wav}").each do |file|
@@ -59,7 +59,7 @@ class LocalLibrary
   end
 
   def process_album(artist, tag)
-    params = {:name => tag.album, :year => tag.year}
+    params = {:name => tag.album, :year => tag.year.to_s == '' ? nil : tag.year}
 
     album = artist.albums.find_by_name tag.album
 
@@ -87,15 +87,20 @@ class LocalLibrary
     end
 
     # Attach cover art
-    # TODO: Better way of finding cover art?
-    cover_art_file = "#{dir}/#{COVER_ART}"
-    if File.exists?(cover_art_file)
-      song.album.cover = File.open(cover_art_file, "r")
-    else
-      song.album.cover = nil
+    if song.album.cover_updated_at.nil?
+      # TODO: Better way of finding cover art?
+      cover_art_file = "#{dir}/#{COVER_ART}"
+
+      if File.exists?(cover_art_file)
+        song.album.cover = File.open(cover_art_file, "r")
+      else
+        song.album.cover = nil
+      end
+
+      song.album.save!
     end
 
-    song.album.save!
+
     song.save!
     song
   end
