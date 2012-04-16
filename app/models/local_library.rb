@@ -59,7 +59,8 @@ class LocalLibrary
   end
 
   def process_album(artist, tag)
-    params = {:name => tag.album, :year => tag.year.to_s == '' ? nil : tag.year}
+    params = {:name => tag.album,
+              :year => (tag.year.to_s == '' || tag.year.to_s == '0') ? nil : tag.year}
 
     album = artist.albums.find_by_name tag.album
 
@@ -74,7 +75,9 @@ class LocalLibrary
   end
 
   def process_song(file, album, tag)
-    params = {:name => tag.title, :track_number => tag.track}
+    params = {:name => tag.title,
+              :genre => tag.genre,
+              :track_number => tag.track}
     dir = File.dirname(file)
 
     song = album.songs.find_by_name tag.title
