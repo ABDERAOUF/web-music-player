@@ -22,18 +22,12 @@ class LocalLibrary
       tag = file_ref.tag
 
       artist = process_artist(tag)
-      album = process_album(artist, tag)
-      song = process_song(file_name, album, tag)
+      album = process_album(artist, tag, file_name)
+      song = process_song(album, tag)
 
-      params = {:song_id => song.id, :location => file_name}
-
-      local_song = LocalSong.find_by_song_id song.id
-      if local_song.nil?
-        local_song = LocalSong.new(params)
-      else
-        local_song.update_attributes(params)
+      local_song = LocalSong.where(:song_id => song.id).first_or_create do |local_song|
+        local_song.location = file_name
       end
-      local_song.save!
 
       # TODO: How best to handle this requirement?
       song.src_url = "local-songs/#{local_song.id}/download"
@@ -48,63 +42,26 @@ class LocalLibrary
   private
 
   def process_artist(tag)
-    artist = Artist.find_by_name tag.artist
-
-    if artist.nil?
-      artist = Artist.new(:name => tag.artist)
-      artist.save!
-    end
-
-    artist
+    Artist.where(:name => tag.artist).first_or_create
   end
 
-  def process_album(artist, tag)
-    params = {:name => tag.album,
-              :year => (tag.year.to_s == '' || tag.year.to_s == '0') ? nil : tag.year}
-
-    album = artist.albums.find_by_name tag.album
-
-    if album.nil?
-      album = artist.albums.build(params)
-    else
-      album.update_attributes(params)
-    end
-
-    album.save!
-    album
-  end
-
-  def process_song(file, album, tag)
-    params = {:name => tag.title,
-              :genre => tag.genre,
-              :track_number => tag.track}
+  def process_album(artist, tag, file)
     dir = File.dirname(file)
 
-    song = album.songs.find_by_name tag.title
+    artist.albums.where(:name => tag.album).first_or_create do |album|
+      album.year = (tag.year.to_s == '' || tag.year.to_s == '0') ? nil : tag.year
 
-    # New or update
-    if song.nil?
-      song = album.songs.build(params)
-    else
-      song.update_attributes(params)
+      # TODO: Better/common way of finding cover art?
+      cover_img = "#{dir}/#{COVER_ART}"
+
+      album.cover = File.exists?(cover_img) ? File.open(cover_img) : nil
     end
+  end
 
-    # Attach cover art
-    if song.album.cover_updated_at.nil?
-      # TODO: Better way of finding cover art?
-      cover_art_file = "#{dir}/#{COVER_ART}"
-
-      if File.exists?(cover_art_file)
-        song.album.cover = File.open(cover_art_file, "r")
-      else
-        song.album.cover = nil
-      end
-
-      song.album.save!
+  def process_song(album, tag)
+    album.songs.where(:name => tag.title).first_or_create do |song|
+      song.genre = tag.genre
+      song.track_number = tag.track
     end
-
-
-    song.save!
-    song
   end
 end
