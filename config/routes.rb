@@ -15,7 +15,7 @@ WebMusicPlayer::Application.routes.draw do
 
   resources :songs, :only => [:index, :create, :show, :update, :destroy, :played]
 
-  get 'local-songs/:id/download' => 'local_songs#download'
+  get 'songs/:id/download' => 'songs#download'
   get 'library' => 'library#index'
 
   root :to => 'home#index'

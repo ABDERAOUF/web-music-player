@@ -1,17 +1,17 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.1'
+gem 'rails', '3.2.0'
 
-gem 'jquery-rails'
-gem 'spine-rails'
+gem 'jquery-rails', '~> 2.0.2'
+gem 'spine-rails', '~> 0.1.0'
 
-gem 'taglib-ruby'
-gem 'paperclip', '~> 3.0'
+gem 'taglib-ruby', '~> 0.5.0'
+gem 'paperclip', '~> 3.0.2'
 
 group :assets do
   gem 'sass', '~> 3.2.0.alpha.101'
-  gem 'sass-rails',   '~> 3.1.4'
-  gem 'coffee-rails', '~> 3.1.1'
+  gem 'sass-rails',   '~> 3.2.5'
+  gem 'coffee-rails', '~> 3.2.2'
   gem 'uglifier', '>= 1.0.3'
 end
 

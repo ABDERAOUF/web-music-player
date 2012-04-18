@@ -31,4 +31,10 @@ class SongsController < ApplicationController
     song.played
     respond_with song
   end
+
+  def download
+    song = Song.find(params[:id])
+    local_song = LocalSong.find_by_song_id song.id
+    send_file local_song.location, :type => "audio/mp3"
+  end
 end

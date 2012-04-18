@@ -31,4 +31,6 @@ class Song extends Spine.Model
     # TODO: Send AJAX request to songs/id/played
     this
 
+  downloadUrl: -> "/songs/#{@id}/download"
+
 window.Song = Song

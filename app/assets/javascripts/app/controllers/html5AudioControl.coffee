@@ -42,7 +42,7 @@ class Html5AudioControl extends Spine.Controller
 
   setSong: (song) ->
     @currentSong = song
-    @el.attr "src", song.src_url unless !song
+    @el.attr "src", song.downloadUrl() unless !song
     @trigger "songchange", song
     this
 
