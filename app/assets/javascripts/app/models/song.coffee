@@ -28,8 +28,7 @@ class Song extends Spine.Model
     artist: album.artist().name
 
   played: ->
-    # TODO: Send AJAX request to songs/id/played
-    this
+    @updateAttributes(play_count: @play_count + 1)
 
   downloadUrl: -> "/songs/#{@id}/download"
 
