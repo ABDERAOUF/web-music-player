@@ -44,7 +44,7 @@ class App extends Spine.Controller
     songFeeder.start()
 
     @routes
-      "": => @navigate "/now-playing"
+      "/": => @navigate "/now-playing"
     Spine.Route.setup()
 
     #Playlist.fetch()
