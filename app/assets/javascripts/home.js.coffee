@@ -1,1 +1,1 @@
-#= require app/controllers/app
+#= require app/app

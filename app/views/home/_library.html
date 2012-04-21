@@ -1,0 +1,36 @@
+<header class="header">
+    <div data-el="title-container">
+        <h1 class="title" data-page="artists">{{artists_page_title}}</h1>
+        <h1 class="title" data-page="albums">{{albums_page_title}}</h1>
+        <h1 class="title" data-page="songs">{{songs_page_title}}</h1>
+    </div>
+
+    <div data-el="back-button-container">
+        <button type="button"
+                data-page="albums"
+                data-role="button"
+                data-button-action="artists">Artists</button>
+        <button type="button"
+                data-page="songs"
+                data-role="button"
+                data-button-action="albums">Albums</button>
+    </div>
+
+    <div data-el="next-button-container">
+        <button type="button"
+                data-role="button"
+                data-button-theme="dark"
+                data-button-action="now-playing">Now Playing</button>
+    </div>
+</header>
+
+<div class="content" data-el="content">
+    <ul data-page="artists"
+        data-role="content-list"></ul>
+
+    <ul data-page="albums"
+        data-role="content-list"></ul>
+
+    <ul data-page="songs"
+        data-role="content-list"></ul>
+</div>
