@@ -2,6 +2,7 @@
 #= require spine
 
 #= require handlebars.template
+#= require iscroll
 
 #= require app/models/artist
 
@@ -12,6 +13,7 @@ class ArtistsPage extends Spine.Controller
   el: "[data-el='artists-page']"
 
   elements:
+    "[data-role=content]": "$content"
     ".artist-list": "$artistList"
 
   events:
@@ -22,7 +24,7 @@ class ArtistsPage extends Spine.Controller
     super
 
     # For now, updates don't refresh the view
-    #Artist.bind "refresh", => @update()
+    Artist.bind "refresh", => @showAll()
 
     @routes
       "/artists": => @showAll()
@@ -31,6 +33,8 @@ class ArtistsPage extends Spine.Controller
     artists = Artist.all() || []
     artists = artists.sort(Util.sortBy("name", true))
     @render(artists: artists)
+    @scroller?.destroy()
+    setTimeout (=> @scroller = new iScroll(@$content.get(0), vScrollbar: true)), 0
     @active()
 
   goToAllAlbums: (e) ->

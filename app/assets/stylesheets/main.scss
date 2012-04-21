@@ -67,7 +67,7 @@ body {
 
         .content {
             position: absolute;
-            overflow-y: scroll;
+            overflow: hidden;
 
             top: $headerHeight;
             right: 0;
