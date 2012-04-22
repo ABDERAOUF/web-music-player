@@ -1,14 +1,15 @@
 <header>
     <h1>{{playlist_name}}</h1>
-    <a href="#/artists"
-        data-role="prev-button"
-        class="ui-button">Find Songs</a>
-    <a href="#/now-playing"
-        data-role="next-button"
-        class="ui-button">Now Playing</a>
+
+    <button type="button"
+            data-role="button"
+            data-button-action="artists">Find Songs</button>
+    <button type="button"
+            data-role="button"
+            data-button-action="now-playing">Now Playing</button>
 </header>
 
-<div class="content" data-role="content">
+<div class="content">
     <ul class="ui-content-list double-line songs">
         {{#if now_playing}}
         {{#with now_playing}}

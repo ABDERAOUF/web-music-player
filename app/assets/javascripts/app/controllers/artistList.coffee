@@ -6,7 +6,7 @@
 
 #= require app/models/artist
 
-class ArtistsPage extends Spine.Controller
+class ArtistList extends Spine.Controller
   @extend HandlebarsTemplate
   @tmpl: "artists"
 
@@ -44,4 +44,4 @@ class ArtistsPage extends Spine.Controller
     artistId = $(e.currentTarget).data("artist-id")
     @navigate "/albums/artist/#{artistId}"
 
-window.ArtistsPage = ArtistsPage
+window.ArtistList = ArtistList

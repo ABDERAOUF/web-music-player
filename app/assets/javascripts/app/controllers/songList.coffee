@@ -8,7 +8,7 @@
 #= require app/models/album
 #= require app/models/song
 
-class SongsPage extends Spine.Controller
+class SongList extends Spine.Controller
   @extend HandlebarsTemplate
   @tmpl: "songs"
 
@@ -71,4 +71,4 @@ class SongsPage extends Spine.Controller
     artistId = $(e.currentTarget).data("artist-id")
     @playlist.addArtist(artistId)
 
-window.SongsPage = SongsPage
+window.SongList = SongList

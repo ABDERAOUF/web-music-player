@@ -1,17 +1,17 @@
 <header class="header">
     <div data-el="title-container">
-        <h1 class="title" data-page="artists">{{artists_page_title}}</h1>
-        <h1 class="title" data-page="albums">{{albums_page_title}}</h1>
-        <h1 class="title" data-page="songs">{{songs_page_title}}</h1>
+        <h1 class="title" data-list="artists">{{artists_page_title}}</h1>
+        <h1 class="title" data-list="albums">{{albums_page_title}}</h1>
+        <h1 class="title" data-list="songs">{{songs_page_title}}</h1>
     </div>
 
     <div data-el="back-button-container">
         <button type="button"
-                data-page="albums"
+                data-list="albums"
                 data-role="button"
                 data-button-action="artists">Artists</button>
         <button type="button"
-                data-page="songs"
+                data-list="songs"
                 data-role="button"
                 data-button-action="albums">Albums</button>
     </div>
@@ -24,13 +24,16 @@
     </div>
 </header>
 
-<div class="content" data-el="content">
-    <ul data-page="artists"
-        data-role="content-list"></ul>
+<div class="list-container"  data-el="library-lists">
+    <ul data-list="artists"
+        data-role="list"
+        data-list-dividers="true"></ul>
 
-    <ul data-page="albums"
-        data-role="content-list"></ul>
+    <ul data-list="albums"
+        data-role="list"
+        data-list-dividers="true"></ul>
 
-    <ul data-page="songs"
-        data-role="content-list"></ul>
+    <ul data-list="songs"
+        data-role="list"
+        data-list-dividers="true"></ul>
 </div>
