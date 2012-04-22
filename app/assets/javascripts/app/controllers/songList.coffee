@@ -12,7 +12,7 @@ class SongList extends Spine.Controller
   @extend HandlebarsTemplate
   @tmpl: "songs"
 
-  el: "[data-el='songs-page']"
+  el: "[data-el=songs-list]"
 
   elements:
     ".song-list": "$songList"

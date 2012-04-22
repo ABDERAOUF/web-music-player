@@ -10,7 +10,7 @@ class ArtistList extends Spine.Controller
   @extend HandlebarsTemplate
   @tmpl: "artists"
 
-  el: "[data-el='artists-page']"
+  el: "[data-el=artists-list]"
 
   elements:
     "[data-role=content]": "$content"

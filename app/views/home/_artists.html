@@ -1,0 +1,11 @@
+<ul>
+    {{all_albums_item}}
+    {{#each artists}}
+    <li data-album-id="{{id}}">
+        <div class="thumbnail album-cover" style="background-image: url({{cover_url}})"></div>
+        <p class="caption album-name">{{name}}</p>
+        <p class="descriptive artist-name">{{artist}}</p>
+        <p class="count">{{album_song_count}}</p>
+    </li>
+    {{/each}
+</ul>
