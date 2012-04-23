@@ -6,11 +6,8 @@
 
 Handlebars.registerHelper "artist_page_title", -> "Artists"
 
-Handlebars.registerHelper "all_albums_item", ->
-  albumCount = Album.count()
-  songCount = Song.count()
-
-  "<li class=\"ui-content-list-item show-all\"><span class=\"caption\">All Albums</span><span class=\"count\">#{albumCount} Albums, #{songCount} Songs</span></li>"
+Handlebars.registerHelper "album_count", -> Album.count()
+Handlebars.registerHelper "song_count", -> Song.count()
 
 Handlebars.registerHelper "artist_album_song_count", ->
   albumCount = this.albums().all().length

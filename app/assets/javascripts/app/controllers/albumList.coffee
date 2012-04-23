@@ -1,10 +1,10 @@
 #= require jquery
 #= require spine
 
-#= require handlebars.template
-
 #= require app/models/artist
 #= require app/models/album
+
+#= require handlebars.template
 
 class AlbumList extends Spine.Controller
   @extend HandlebarsTemplate
@@ -12,19 +12,15 @@ class AlbumList extends Spine.Controller
 
   el: "[data-el=albums-list]"
 
-  elements:
-    ".album-list": "$albumList"
-
   events:
-    "click .album-list .show-all": "goToAllSongs"
-    "click .album-list .show-all-by-artist": "goToSongsByArtist"
-    "click .album-list .album": "goToSongsByAlbum"
+    "click [data-link=all-songs]": "goToAllSongs"
+    "click [data-link=songs-by-artist]": "goToSongsByArtist"
+    "click [data-link=songs-by-album]": "goToSongsByAlbum"
 
   constructor: ->
     super
 
-    # For now, updates don't refresh the view
-    #Album.bind "refresh", => @update()
+    Album.bind "refresh", => @showAll()
 
     @routes
       "/albums/artist/:artistId": (params) => @showAllByArtist(params.artistId)
@@ -35,7 +31,6 @@ class AlbumList extends Spine.Controller
     albums = $.map(Album.all(), (album) -> album.flatten())
     albums = albums.sort(Util.sortBy("name", true))
     @render(albums: albums)
-    @active()
 
   showAllByArtist: (artistId) ->
     @currentFilter = "artist"
@@ -43,7 +38,6 @@ class AlbumList extends Spine.Controller
     albums = $.map(artist.albums().all(), (album) -> album.flatten())
     albums = albums.sort(Util.sortBy("name", true))
     @render(artist: artist, albums: albums)
-    @active()
 
   goToAllSongs: (e) ->
     @navigate "/songs"

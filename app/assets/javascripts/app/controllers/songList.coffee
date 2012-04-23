@@ -1,12 +1,13 @@
 #= require jquery
 #= require spine
 
-#= require handlebars.template
-#= require util
-
 #= require app/models/artist
 #= require app/models/album
 #= require app/models/song
+#= require app/models/playlist
+
+#= require handlebars.template
+#= require util
 
 class SongList extends Spine.Controller
   @extend HandlebarsTemplate
@@ -14,19 +15,15 @@ class SongList extends Spine.Controller
 
   el: "[data-el=songs-list]"
 
-  elements:
-    ".song-list": "$songList"
-
   events:
-    "click .song-list .song": "addSongToPlaylist"
-    "click .song-list .add-whole-album": "addAlbumToPlaylist"
-    "click .song-list .add-whole-artist": "addArtistToPlaylist"
+    "click [data-link=add-song]": "addSongToPlaylist"
+    "click [data-link=add-album]": "addAlbumToPlaylist"
+    "click [data-link=add-artist]": "addArtistToPlaylist"
 
   constructor: ->
     super
 
-    # For now, updates don't refresh the view
-    #Song.bind "refresh", => @update()
+    Song.bind "refresh", => @showAll()
 
     @routes
       "/songs/artist/:artistId": (params) => @showAllByArtist(params.artistId)
@@ -38,7 +35,6 @@ class SongList extends Spine.Controller
     songs = $.map(Song.all(), (song) -> song.flatten())
     songs = songs.sort(Util.sortBy("track", true))
     @render(songs: songs)
-    @active()
 
   showAllByArtist: (artistId) ->
     artist = Artist.find(artistId)
@@ -48,16 +44,13 @@ class SongList extends Spine.Controller
         songs.push(song.flatten())
 
     songs = songs.sort(Util.sortBy("name", true))
-
     @render(songs: songs, filter: artist)
-    @active()
 
   showAllByAlbum: (albumId) ->
     album = Album.find(albumId)
     songs = $.map(album.songs().all(), (song) -> song.flatten())
     songs = songs.sort(Util.sortBy("track", true))
     @render(songs: songs, filter: album)
-    @active()
 
   addSongToPlaylist: (e) ->
     songId = $(e.currentTarget).data("song-id")

@@ -5,5 +5,12 @@
 
 class ListRoleHandler extends RoleHandler
   initRole: ($element) ->
-    @scroller = new iScroll($element[0])
-    $element.bind "rendered", => @scroller.refresh()
+    @scroller = @create($element) if $element.children().length
+    $element.bind "rendered", =>
+      @scroller = @create($element) unless @scroller
+      @scroller.refresh()
+
+  create: ($element) ->
+    @scroller = new iScroll($element.children().length)
+
+window.ListRoleHandler = ListRoleHandler

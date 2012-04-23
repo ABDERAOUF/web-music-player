@@ -8,6 +8,7 @@
 
 #= require roles/roles
 #= require roles/buttonRoleHandler
+#= require roles/listRoleHandler
 
 class App extends Spine.Controller
   el: "[data-el='stage']"
@@ -18,6 +19,7 @@ class App extends Spine.Controller
     roles = new RoleCollection()
     roles
       .add("button", new ButtonRoleHandler())
+      .add("list", new ListRoleHandler())
       .initRoles(@el)
 
     Spine.bind "rendered", (c) -> c.el.initRoles()

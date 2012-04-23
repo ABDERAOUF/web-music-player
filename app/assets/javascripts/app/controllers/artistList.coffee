@@ -1,10 +1,9 @@
 #= require jquery
 #= require spine
 
-#= require handlebars.template
-#= require iscroll
-
 #= require app/models/artist
+
+#= require handlebars.template
 
 class ArtistList extends Spine.Controller
   @extend HandlebarsTemplate
@@ -12,18 +11,13 @@ class ArtistList extends Spine.Controller
 
   el: "[data-el=artists-list]"
 
-  elements:
-    "[data-role=content]": "$content"
-    ".artist-list": "$artistList"
-
   events:
-    "click .artist-list .show-all": "goToAllAlbums"
-    "click .artist-list .artist": "goToAlbumsByArtist"
+    "click [data-link=all-albums]": "goToAllAlbums"
+    "click [data-link=albums-by-artist]": "goToAlbumsByArtist"
 
   constructor: ->
     super
 
-    # For now, updates don't refresh the view
     Artist.bind "refresh", => @showAll()
 
     @routes
@@ -33,9 +27,6 @@ class ArtistList extends Spine.Controller
     artists = Artist.all() || []
     artists = artists.sort(Util.sortBy("name", true))
     @render(artists: artists)
-    @scroller?.destroy()
-    setTimeout (=> @scroller = new iScroll(@$content.get(0), vScrollbar: true)), 0
-    @active()
 
   goToAllAlbums: (e) ->
     @navigate "/albums"
