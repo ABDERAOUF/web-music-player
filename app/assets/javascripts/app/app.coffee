@@ -35,7 +35,7 @@ class App extends Spine.Controller
 
     # Initialise main pages
     new Spine.Manager(
-      new Library(playlist: playlist),
+      new LibraryLists(playlist: playlist),
       new PlaylistPage(playlist: playlist, audioControl: audioControl),
       new NowPlayingPage(audioControl: audioControl))
 

@@ -6,11 +6,11 @@
 #= require handlebars.template
 #= require iscroll
 
-class Library extends Spine.Controller
+class LibraryLists extends Spine.Controller
   @extend HandlebarsTemplate
-  @tmpl: "library"
+  @tmpl: "library-lists"
 
-  el: "[data-el=library-page]"
+  el: "[data-el=library-lists-page]"
 
   constructor: ->
     super
@@ -22,4 +22,4 @@ class Library extends Spine.Controller
       new AlbumList(playlist: @playlist),
       new SongList(playlist: @playlist))
 
-window.Library = Library
+window.LibraryLists = LibraryLists
