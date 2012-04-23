@@ -25,7 +25,6 @@ class App extends Spine.Controller
     Spine.bind "rendered", (c) -> c.el.initRoles()
 
     window.onbeforeunload = ->
-      # TODO: Get from resource
       if Spine.Ajax.pending
         '''Data is still being sent to the server;
            you may lose unsaved changes if you close this page.'''
@@ -45,8 +44,17 @@ class App extends Spine.Controller
     songFeeder = new SongFeeder(playlist, audioControl)
     songFeeder.start()
 
+    $body = $("body")
     @routes
-      "/": => @navigate "/now-playing"
+      "/artists":                    => $body.trigger "navigate.artists.all", @
+      "/albums":                     => $body.trigger "navigate.albums.all", @
+      "/albums/artist/:id": (params) => $body.trigger "navigate.albums.artist", @, params.id
+      "/songs/artist/:id": (params)  => $body.trigger "navigate.songs.artist", @, params.id
+      "/songs/album/:id": (params)   => $body.trigger "navigate.songs.album", @, params.id
+      "/songs":                      => $body.trigger "navigate.songs.all", @
+      "/playlist":                   => $body.trigger "navigate.playlist", @
+      "/now-playing":                => $body.trigger "navigate.nowplaying", @
+      "/":                           => $body.trigger "navigate.nowplaying", @
     Spine.Route.setup()
 
     #Playlist.fetch()

@@ -22,8 +22,7 @@ class PlaylistPage extends Spine.Controller
     @audioControl.bind "songchange", => @update()
     @audioControl.bind "timeupdate", (time) => @updateTimeRemaining(time)
 
-    @routes
-      "/playlist": => @active()
+    Spine.bind "playlist.navigate", => @active()
 
   activate: ->
     @el.addClass("active")

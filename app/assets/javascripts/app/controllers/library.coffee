@@ -22,4 +22,13 @@ class LibraryLists extends Spine.Controller
       new AlbumList(playlist: @playlist),
       new SongList(playlist: @playlist))
 
+    $body = $("body")
+    $body.on "navigate.artists", => @showArtists()
+    $body.on "navigate.albums", => @showAlbums()
+    $body.on "navigate.songs", => @showSongs()
+
+  showArtists: -> console.log("artists")
+  showAlbums: -> console.log("albums")
+  showSongs: -> console.log("songs")
+
 window.LibraryLists = LibraryLists

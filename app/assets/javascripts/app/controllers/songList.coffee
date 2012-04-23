@@ -25,11 +25,10 @@ class SongList extends Spine.Controller
 
     Song.bind "refresh", => @showAll()
 
-    @routes
-      "/songs/artist/:artistId": (params) => @showAllByArtist(params.artistId)
-      "/songs/album/:albumId": (params) => @showAllByAlbum(params.albumId)
-      "/songs": => @showAll()
-
+    $body = $("body")
+    $body.on "navigate.songs.artist", (id) => @showAllByArtist(id)
+    $body.on "navigate.songs.album", (id) => @showAllByAlbum(id)
+    $body.on "navigate.songs.all", => @showAll()
 
   showAll: ->
     songs = $.map(Song.all(), (song) -> song.flatten())

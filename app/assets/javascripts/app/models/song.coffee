@@ -16,7 +16,8 @@ class Song extends Spine.Model
   @belongsTo "album", "Album"
 
   flatten: ->
-    album = @album()
+    album = @album() || new Album()
+    artist = album.artist() || new Artist()
 
     id: @id
     name: @name
@@ -25,7 +26,7 @@ class Song extends Spine.Model
     album: album.name
     album_cover_url: album.cover_url
     album_year: album.year
-    artist: album.artist().name
+    artist: artist.name
 
   played: ->
     @updateAttributes(play_count: @play_count + 1)
