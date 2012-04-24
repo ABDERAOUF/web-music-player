@@ -22,12 +22,12 @@ class LibraryLists extends Spine.Controller
       new AlbumList(playlist: @playlist),
       new SongList(playlist: @playlist))
 
-    Spine.bind "navigate.artists", => @showArtists()
-    Spine.bind "navigate.albums", => @showAlbums()
-    Spine.bind "navigate.songs", => @showSongs()
+    Spine.bind "navigate.artists", => @show("artists")
+    Spine.bind "navigate.albums", => @show("albums")
+    Spine.bind "navigate.songs", => @show("songs")
 
-  showArtists: -> @active()
-  showAlbums: -> @active()
-  showSongs: -> @active()
+  show: (list) ->
+    @el.find("[data-list]").hide().filter("[data-list=#{list}]").show()
+    @active()
 
 window.LibraryLists = LibraryLists
