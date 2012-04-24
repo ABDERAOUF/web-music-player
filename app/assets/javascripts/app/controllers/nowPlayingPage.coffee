@@ -22,7 +22,7 @@ class NowPlayingPage extends Spine.Controller
     @audioControl.bind "songchange", (song) => @update(song)
     @audioControl.bind "timeupdate", (time) => @updateTimeRemaining(time)
 
-    Spine.trigger "nowplaying.navigate", => @active()
+    Spine.bind "navigate.nowplaying", => @active()
 
   goToArtists: -> @navigate "/artists"
 

@@ -20,8 +20,7 @@ class ArtistList extends Spine.Controller
 
     Artist.bind "refresh", => @showAll()
 
-    @routes
-      "/artists": => @showAll()
+    Spine.bind "navigate.artists.all", => @showAll()
 
   showAll: ->
     artists = Artist.all() || []

@@ -22,8 +22,8 @@ class AlbumList extends Spine.Controller
 
     Album.bind "refresh", => @showAll()
 
-    Spine.bind "artist.albums.navigate", (id) => @showAllByArtist(id)
-    Spine.bind "albums.navigate", => @showAll()
+    Spine.bind "navigate.albums.artist", (id) => @showAllByArtist(id)
+    Spine.bind "navigate.albums", => @showAll()
 
   showAll: ->
     @currentFilter = "all"
