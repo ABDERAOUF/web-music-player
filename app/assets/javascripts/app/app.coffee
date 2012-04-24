@@ -1,11 +1,11 @@
 #= require jquery
 #= require spine
 #= require spine/manager
-#= require spine/route
 
 #= require_directory ./controllers
 #= require_directory ./models
 
+#= require ./router
 #= require roles/roles
 #= require roles/buttonRoleHandler
 #= require roles/listRoleHandler
@@ -44,18 +44,7 @@ class App extends Spine.Controller
     songFeeder = new SongFeeder(playlist, audioControl)
     songFeeder.start()
 
-    $body = $("body")
-    @routes
-      "/artists":                    => $body.trigger "navigate.artists.all", @
-      "/albums":                     => $body.trigger "navigate.albums.all", @
-      "/albums/artist/:id": (params) => $body.trigger "navigate.albums.artist", @, params.id
-      "/songs/artist/:id": (params)  => $body.trigger "navigate.songs.artist", @, params.id
-      "/songs/album/:id": (params)   => $body.trigger "navigate.songs.album", @, params.id
-      "/songs":                      => $body.trigger "navigate.songs.all", @
-      "/playlist":                   => $body.trigger "navigate.playlist", @
-      "/now-playing":                => $body.trigger "navigate.nowplaying", @
-      "/":                           => $body.trigger "navigate.nowplaying", @
-    Spine.Route.setup()
+    Router.get().setup()
 
     #Playlist.fetch()
     Artist.fetch()
