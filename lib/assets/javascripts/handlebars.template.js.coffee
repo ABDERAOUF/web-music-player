@@ -7,6 +7,7 @@ Include =
     @item = item or @item or {}
     @html @constructor.tmplFunc(@item)
     @trigger "rendered"
+    @el.trigger "rendered"
     Spine.trigger "rendered", @
     @
 

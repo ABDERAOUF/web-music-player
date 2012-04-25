@@ -61,10 +61,12 @@ body {
 
           .back-button-container {
             float: left;
+            padding: 9px;
           }
 
           .next-button-container {
             float: right;
+            padding: 9px;
           }
         }
 
@@ -80,6 +82,11 @@ body {
     }
 
     footer { display: none; }
+}
+
+.star-rating {
+  display: inline-block;
+
 }
 
 // TEMP
