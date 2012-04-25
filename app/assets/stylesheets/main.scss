@@ -85,8 +85,19 @@ body {
 }
 
 .star-rating {
-  display: inline-block;
+  $starSize: 25px;
+  $gap: 5px;
 
+  display: inline-block;
+  width: (($starSize + $gap) * 5) - $gap;
+  height: $starSize;
+
+  background:
+    url(glyphicons_049_star.png) no-repeat 0 0,
+    url(glyphicons_049_star.png) no-repeat ($starSize + $gap) 0,
+    url(glyphicons_049_star.png) no-repeat (($starSize + $gap) * 2) 0,
+    url(glyphicons_049_star.png) no-repeat (($starSize + $gap) * 3) 0,
+    url(glyphicons_049_star.png) no-repeat (($starSize + $gap) * 4) 0,
 }
 
 // TEMP
