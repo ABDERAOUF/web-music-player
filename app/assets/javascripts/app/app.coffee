@@ -29,6 +29,7 @@ class App extends Spine.Controller
         '''Data is still being sent to the server;
            you may lose unsaved changes if you close this page.'''
 
+    # TODO: Get playlist from server as well
     playlist = Playlist.first() || new Playlist(name: "Playlist")
     audioControl = new Html5AudioControl()
 
