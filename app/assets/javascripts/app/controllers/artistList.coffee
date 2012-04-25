@@ -18,11 +18,11 @@ class ArtistList extends Spine.Controller
   constructor: ->
     super
 
-    Artist.bind "refresh", => @showAll()
+    Artist.bind "refresh", @showAll
 
-    Spine.bind "navigate.artists.all", => @showAll()
+    Spine.bind "navigate.artists.all", @showAll
 
-  showAll: ->
+  showAll: =>
     artists = Artist.all() || []
     artists = artists.sort(Util.sortBy("name", true))
     @render(artists: artists)

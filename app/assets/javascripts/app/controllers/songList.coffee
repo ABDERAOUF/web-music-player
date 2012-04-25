@@ -23,18 +23,18 @@ class SongList extends Spine.Controller
   constructor: ->
     super
 
-    Song.bind "refresh", => @showAll()
+    Song.bind "refresh", @showAll
 
-    Spine.bind "navigate.songs.artist", (id) => @showAllByArtist(id)
-    Spine.bind "navigate.songs.album", (id) => @showAllByAlbum(id)
-    Spine.bind "navigate.songs.all", => @showAll()
+    Spine.bind "navigate.songs.artist", @showAllByArtist
+    Spine.bind "navigate.songs.album", @showAllByAlbum
+    Spine.bind "navigate.songs.all", @showAll
 
-  showAll: ->
+  showAll: =>
     songs = $.map(Song.all(), (song) -> song.flatten())
     songs = songs.sort(Util.sortBy("track", true))
     @render(songs: songs)
 
-  showAllByArtist: (artistId) ->
+  showAllByArtist: (artistId) =>
     artist = Artist.find(artistId)
     songs = []
     for album in artist.albums().all()
@@ -44,7 +44,7 @@ class SongList extends Spine.Controller
     songs = songs.sort(Util.sortBy("name", true))
     @render(songs: songs, filter: artist)
 
-  showAllByAlbum: (albumId) ->
+  showAllByAlbum: (albumId) =>
     album = Album.find(albumId)
     songs = $.map(album.songs().all(), (song) -> song.flatten())
     songs = songs.sort(Util.sortBy("track", true))

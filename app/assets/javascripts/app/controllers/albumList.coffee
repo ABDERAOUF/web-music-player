@@ -20,18 +20,18 @@ class AlbumList extends Spine.Controller
   constructor: ->
     super
 
-    Album.bind "refresh", => @showAll()
+    Album.bind "refresh", @showAll
 
-    Spine.bind "navigate.albums.artist", (id) => @showAllByArtist(id)
-    Spine.bind "navigate.albums", => @showAll()
+    Spine.bind "navigate.albums.artist", @showAllByArtist
+    Spine.bind "navigate.albums", @showAll
 
-  showAll: ->
+  showAll: =>
     @currentFilter = "all"
     albums = $.map(Album.all(), (album) -> album.flatten())
     albums = albums.sort(Util.sortBy("name", true))
     @render(albums: albums)
 
-  showAllByArtist: (artistId) ->
+  showAllByArtist: (artistId) =>
     @currentFilter = "artist"
     artist = Artist.find(artistId)
     albums = $.map(artist.albums().all(), (album) -> album.flatten())
