@@ -10,7 +10,7 @@ body {
 
   @include user-select-none();
 
-  @include carbon-fibre-background($backgroundColour, $backgroundDotColour, $backgroundDotHighlightColour);
+  @include carbon-fibre-background($bgColour, $bgDotColour, $bgDotHighlightColour);
 
   &:before {
     content: '';

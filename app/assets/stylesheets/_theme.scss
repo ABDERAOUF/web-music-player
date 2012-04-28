@@ -1,12 +1,26 @@
 
 // Main
-$textColour: #231f20;
+$textColour: #f5f5f5;
+$textShadow: 0 -1px 0 #000;
 
 $linkColour: #0000ee;
 $linkHoverColour: #0066ee;
 
-$backgroundColour: #332f29;
-$backgroundDotColour: #221e18;
-$backgroundDotHighlightColour: #39352f;
+$bgColour: #332f29;
+$bgDotColour: #221e18;
+$bgDotHighlightColour: #39352f;
 
 $shadowColour: rgba(0, 0, 0, 0.75);
+
+// UI
+$btnTopColour: #4f4740;
+$btnBottomColour: #302b27;
+$btnHighlightColour: #635950;
+
+$btnHoverTopColour: #5d544b;
+$btnHoverBottomColour: #38332d;
+$btnHoverHighlightColour: #74695e;
+
+$btnActiveTopColour: #3f3933;
+$btnActiveBottomColour: #4a433c;
+$btnActiveHighlightColour: #48413b;
