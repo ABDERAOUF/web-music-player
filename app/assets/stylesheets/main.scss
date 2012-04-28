@@ -84,9 +84,15 @@ body {
     footer { display: none; }
 }
 
+$starSize: 25px;
+$gap: 5px;
+
+@function star-pos($index) {
+  @return ($starSize + $gap) * $index;
+}
+
 .star-rating {
-  $starSize: 25px;
-  $gap: 5px;
+
 
   display: inline-block;
   width: (($starSize + $gap) * 5) - $gap;
@@ -94,10 +100,10 @@ body {
 
   background:
     url(glyphicons_049_star.png) no-repeat 0 0,
-    url(glyphicons_049_star.png) no-repeat ($starSize + $gap) 0,
-    url(glyphicons_049_star.png) no-repeat (($starSize + $gap) * 2) 0,
-    url(glyphicons_049_star.png) no-repeat (($starSize + $gap) * 3) 0,
-    url(glyphicons_049_star.png) no-repeat (($starSize + $gap) * 4) 0,
+    url(glyphicons_049_star.png) no-repeat pos(1) 0,
+    url(glyphicons_049_star.png) no-repeat pos(2) 0,
+    url(glyphicons_049_star.png) no-repeat pos(3) 0,
+    url(glyphicons_049_star.png) no-repeat pos(4) 0
 }
 
 // TEMP
