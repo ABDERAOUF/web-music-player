@@ -1,24 +1,33 @@
 @import "theme";
 @import "css3";
 
-@mixin carbon-fibre-background($colour, $size: 4px) {
+$noise: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAATklEQVQYV2NkQABJIPM5Lj4jUAKmAJ2G6QGJM4AUggC6aRhiMIXIumHWI2uWRFaIz+rn2NyI1XR0q9HdBrcem9V4TcQVRHBxbFZjCy5JAIb1GKE0rM+FAAAAAElFTkSuQmCC);
+
+@mixin carbon-fibre-background($colour,
+                               $darkColour: black,
+                               $lightColour: rgba(255, 255, 255, 0.1),
+                               $size: 12%,
+                               $spacing: 4px) {
   background:
-       -moz-radial-gradient(black 15%, transparent 16%) 0 0,
-       -moz-radial-gradient(black 15%, transparent 16%) $size $size,
-       -moz-radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
-       -moz-radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) $size ($size + 1);
+       -moz-radial-gradient($darkColour $size, transparent ($size + 1)) 0 0,
+       -moz-radial-gradient($darkColour $size, transparent ($size + 1)) $spacing $spacing,
+       -moz-radial-gradient($lightColour ($size + 7), transparent ($size + 8)) 0 1px,
+       -moz-radial-gradient($lightColour ($size + 7), transparent ($size + 8)) $spacing ($spacing + 1),
+                            $noise;
   background:
-    -webkit-radial-gradient(black 15%, transparent 16%) 0 0,
-    -webkit-radial-gradient(black 15%, transparent 16%) $size $size,
-    -webkit-radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
-    -webkit-radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) $size ($size + 1);
+    -webkit-radial-gradient($darkColour $size, transparent ($size + 1)) 0 0,
+    -webkit-radial-gradient($darkColour $size, transparent ($size + 1)) $spacing $spacing,
+    -webkit-radial-gradient($lightColour ($size + 7), transparent ($size + 8)) 0 1px,
+    -webkit-radial-gradient($lightColour ($size + 7), transparent ($size + 8)) $spacing ($spacing + 1),
+                            $noise;
   background:
-            radial-gradient(black 15%, transparent 16%) 0 0,
-            radial-gradient(black 15%, transparent 16%) $size $size,
-            radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
-            radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) $size ($size + 1);
+            radial-gradient($darkColour $size, transparent ($size + 1)) 0 0,
+            radial-gradient($darkColour $size, transparent ($size + 1)) $spacing $spacing,
+            radial-gradient($lightColour ($size + 7), transparent ($size + 8)) 0 1px,
+            radial-gradient($lightColour ($size + 7), transparent ($size + 8)) $spacing ($spacing + 1),
+                            $noise;
   background-color: $colour;
-  background-size: ($size * 2) ($size * 2);
+  background-size: ($spacing * 2) ($spacing * 2);
 }
 
 @mixin box-off-the-ground($distance) {
