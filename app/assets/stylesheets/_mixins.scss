@@ -1,8 +1,6 @@
 @import "theme";
 @import "css3";
 
-$noise: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAATklEQVQYV2NkQABJIPM5Lj4jUAKmAJ2G6QGJM4AUggC6aRhiMIXIumHWI2uWRFaIz+rn2NyI1XR0q9HdBrcem9V4TcQVRHBxbFZjCy5JAIb1GKE0rM+FAAAAAElFTkSuQmCC);
-
 @mixin carbon-fibre-background($colour,
                                $darkColour: black,
                                $lightColour: rgba(255, 255, 255, 0.1),

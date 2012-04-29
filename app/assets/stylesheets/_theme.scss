@@ -1,6 +1,8 @@
 
 // Main
 $textColour: #f5f5f5;
+$selectedTextColour: #f5b50c;
+$hintTextColour: #b5b5b5;
 $textShadow: 0 -1px 0 #000;
 
 $linkColour: #0000ee;
@@ -24,3 +26,11 @@ $btnHoverHighlightColour: #74695e;
 $btnActiveTopColour: #3f3933;
 $btnActiveBottomColour: #4a433c;
 $btnActiveHighlightColour: #48413b;
+
+$lstBgColour: #4a433c;
+$lstItemHoverBgColour: rgba(0, 0, 0, 0.15);
+$lstItemActiveBgColour: rgba(0, 0, 0, 0.25);
+$lstItemBorderTopColour: #5d544b;
+$lstItemBorderBottomColour: #302d2d;
+
+$noise: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAATklEQVQYV2NkQABJIPM5Lj4jUAKmAJ2G6QGJM4AUggC6aRhiMIXIumHWI2uWRFaIz+rn2NyI1XR0q9HdBrcem9V4TcQVRHBxbFZjCy5JAIb1GKE0rM+FAAAAAElFTkSuQmCC);

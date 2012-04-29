@@ -3,7 +3,7 @@
 
 $btnHeight: 36px;
 $buttonBorderColour: #8b8b8b;
-$btnShadow: 0 1px 2px 0px rgba(0,0,0,0.5);
+$dropShadow: 0 1px 2px 0px rgba(0,0,0,0.5);
 
 .ui-button {
   position: relative;
@@ -22,15 +22,15 @@ $btnShadow: 0 1px 2px 0px rgba(0,0,0,0.5);
   border: none;
 
   @include linear-gradient($btnTopColour, 0%, $btnBottomColour, 100%);
-  box-shadow: inset 0 1px 0 $btnHighlightColour, $btnShadow;
+  box-shadow: inset 0 1px 0 $btnHighlightColour, $dropShadow;
 
   &:hover {
     @include linear-gradient($btnHoverTopColour, 0%, $btnHoverBottomColour, 100%);
-    box-shadow: inset 0 1px 0 $btnHoverHighlightColour, $btnShadow;
+    box-shadow: inset 0 1px 0 $btnHoverHighlightColour, $dropShadow;
   }
   &:active {
     @include linear-gradient($btnActiveTopColour, 0%, $btnActiveBottomColour, 100%);
-    box-shadow: inset 0 1px 0 $btnActiveHighlightColour, inset 0 0 4px rgba(0,0,0,0.1) $btnShadow;
+    box-shadow: inset 0 1px 0 $btnActiveHighlightColour, inset 0 0 4px rgba(0,0,0,0.1) $dropShadow;
   }
 }
 
@@ -42,14 +42,31 @@ $btnShadow: 0 1px 2px 0px rgba(0,0,0,0.5);
 
   list-style: none;
 
+  background: $noise, -webkit-linear-gradient(top, $lstBgColour 0%, $lstBgColour 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), inset 0 0 3px rgba(255, 255, 255, 0.15), $dropShadow;
+
   .ui-list-item {
     position: relative;
     height: $thumbnailSize;
+    padding: 3px;
 
-    text-shadow: 0 1px 0 #fff;
+    text-shadow: $textShadow;
     cursor: pointer;
 
-    @include linear-gradient(#f8f8f8, 0%, #dfdfdf, 100%);
+    border-top: solid 1px $lstItemBorderTopColour;
+    border-bottom: solid 1px $lstItemBorderBottomColour;
+
+    &:first-child { border-top: none; }
+    &:last-child { border-bottom: none; }
+
+    &:hover {
+      color: $selectedTextColour;
+      background: $lstItemHoverBgColour;
+    }
+    &:active {
+      color: $selectedTextColour;
+      background: $lstItemActiveBgColour;
+    }
 
     .thumbnail {
       float: left;
@@ -63,15 +80,16 @@ $btnShadow: 0 1px 2px 0px rgba(0,0,0,0.5);
 
     .caption {
       margin: 0;
+      line-height: 30px;
       font-size: 18px;
-      font-weight: 600;
+      font-weight: 700;
     }
 
-    .descriptive {
+    .description {
       margin: 0;
       font-size: 13px;
       font-weight: 600;
-      color: #727272;
+      color: $hintTextColour;
     }
 
     .count, .rating {
@@ -83,7 +101,7 @@ $btnShadow: 0 1px 2px 0px rgba(0,0,0,0.5);
       line-height: 48px;
       font-size: 13px;
       font-weight: 600;
-      color: #727272;
+      color: $hintTextColour;
     }
   }
 
