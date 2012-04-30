@@ -32,7 +32,7 @@ class LibraryLists extends Spine.Controller
     Spine.bind "navigate.songs", @showSongs
 
   show: (list) ->
-    @el.find("[data-list]").hide().filter("[data-list=#{list}]").show()
+    #@el.find("[data-list]").hide().filter("[data-list=#{list}]").show()
     @active()
 
   showArtists: => @show("artists")
