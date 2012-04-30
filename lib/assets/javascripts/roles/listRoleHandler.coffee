@@ -5,20 +5,21 @@
 
 class ListRoleHandler extends RoleHandler
   initRole: ($element) ->
-    @scroller = @create($element) if $element.children().length
+    @scroller = @create($element)
 
     $element.bind "rendered", =>
       $element
-        .find("[data-list-container")
-          .addClass("ui-list")
-          .end()
+        .find("[data-list-container]")
+        .addClass("ui-list")
         .find("[data-list-item]")
-          .addClass("ui-list-item")
+        .addClass("ui-list-item")
 
-      @scroller = @create($element) unless @scroller
-      setTimeout((=> @scroller.refresh()), 100)
+      @scroller = @create($element)
 
   create: ($element) ->
-    @scroller = new iScroll($element[0])
+    #if @scroller
+      #@scroller.destroy()
+    if $element.children().length
+      @scroller = new iScroll($element[0])
 
 window.ListRoleHandler = ListRoleHandler

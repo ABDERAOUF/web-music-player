@@ -1,7 +1,7 @@
-<ul class="ui-list">
+<ul data-list-container>
     {{add_to_playlist_item}}
     {{#each songs}}
-    <li class="ui-list-item" data-link="song" data-song-id="{{id}}">
+    <li data-link="song" data-song-id="{{id}}" data-list-item>
         <div class="track-number">{{track_number}}</div>
         <p class="caption song-name">{{name}}</p>
         <p class="description artist-album">{{artist}} - {{album}}</p>

@@ -9,7 +9,7 @@ gem 'taglib-ruby', '~> 0.5.0'
 gem 'paperclip', '~> 3.0.2'
 
 group :assets do
-  gem 'sass', '~> 3.2.0.alpha.101'
+  gem 'sass', '~> 3.2.0.alpha.104'
   gem 'sass-rails',   '~> 3.2.5'
   gem 'coffee-rails', '~> 3.2.2'
   gem 'uglifier', '>= 1.0.3'

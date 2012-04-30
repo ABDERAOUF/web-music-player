@@ -1,10 +1,10 @@
-<ul class="ui-list">
-    <li class="ui-list-item" data-link="all-albums">
+<ul data-list-container>
+    <li data-link="all-albums" data-list-item>
         <p class="caption">All Albums</p>
         <p class="count">{{album_count}} Albums, {songCount} Songs</p>
     </li>
     {{#each artists}}
-    <li class="ui-list-item" data-link="albums-by-artist" data-artist-id="{{id}}">
+    <li data-link="albums-by-artist" data-artist-id="{{id}}" data-list-item>
         <div class="thumbnail album-cover" style="background-image: url({{cover_url}})"></div>
         <p class="caption album-name">{{name}}</p>
         <p class="description artist-name">{{artist}}</p>
