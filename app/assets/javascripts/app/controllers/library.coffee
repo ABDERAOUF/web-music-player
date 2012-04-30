@@ -33,6 +33,7 @@ class LibraryLists extends Spine.Controller
 
   show: (list) ->
     #@el.find("[data-list]").hide().filter("[data-list=#{list}]").show()
+    @el.removeClass("artists albums songs").addClass(list)
     @active()
 
   showArtists: => @show("artists")

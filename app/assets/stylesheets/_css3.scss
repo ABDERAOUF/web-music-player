@@ -89,3 +89,11 @@
           user-select: $arguments;
 }
 @mixin user-select-none() { @include user-select(none); }
+
+@mixin transform($arguments) {
+  -webkit-transform: $arguments;
+     -moz-transform: $arguments;
+      -ms-transform: $arguments;
+       -o-transform: $arguments;
+          transform: $arguments;
+}
