@@ -25,13 +25,22 @@ $dropShadow: 0 1px 2px 0px rgba(0,0,0,0.5);
   box-shadow: inset 0 1px 0 $btnHighlightColour, $dropShadow;
 
   &:hover {
+    color: $selectedTextColour;
+
     @include linear-gradient($btnHoverTopColour, 0%, $btnHoverBottomColour, 100%);
     box-shadow: inset 0 1px 0 $btnHoverHighlightColour, $dropShadow;
   }
   &:active {
     @include transform( (translateY(1px)) );
+
+    color: $selectedTextColour;
+
     @include linear-gradient($btnActiveTopColour, 0%, $btnActiveBottomColour, 100%);
     box-shadow: inset 0 1px 0 $btnActiveHighlightColour, inset 0 0 4px rgba(0,0,0,0.1) $dropShadow;
+  }
+  &:focus {
+    color: $selectedTextColour;
+    outline: solid 1px $selectedTextColour;
   }
 }
 

@@ -103,16 +103,33 @@ body {
     footer { display: none; }
 }
 
+// TODO: Maybe try keyframes on a "current" class?
 // TODO: This is a bit shitty, but it's a start
 #library-lists {
-  .artists-list {
-    @include transition( (all .3s $easeInOutCubic) );
+
+  .back-button-container {
+    position: relative;
+
+    .artists-button,
+    .albums-button {
+      position: absolute;
+      top: 0;
+      left: -100px;
+
+      @include transition( (left .4s $easeInOutCubic) );
+    }
   }
-  .albums-list {
-    @include transition( (all .3s $easeInOutCubic) );
+  &.albums .artists-button {
+    left: 0;
   }
+  &.songs .albums-button {
+    left: 0;
+  }
+
+  .artists-list,
+  .albums-list,
   .songs-list {
-    @include transition( (all .3s $easeInOutCubic) );
+    @include transition( (left .4s $easeInOutCubic) );
   }
 
   &.artists {
