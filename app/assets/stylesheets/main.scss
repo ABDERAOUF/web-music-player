@@ -110,44 +110,32 @@ body {
   .back-button-container {
     position: relative;
 
-    .artists-button,
-    .albums-button {
+    button {
+      display: none;
       position: absolute;
       top: 0;
-      left: -100px;
-
-      @include transition( (left .4s $easeInOutCubic) );
+      left: 0;
+    }
+    .show-next {
+      display: block;
+      -webkit-animation: button-show-next .4s $easeOutCubic forwards;
+    }
+    .hide-next {
+      display: block;
+      -webkit-animation: button-hide-next .4s $easeOutCubic forwards;
     }
   }
-  &.albums .artists-button {
-    left: 0;
-  }
-  &.songs .albums-button {
-    left: 0;
-  }
-
-  .artists-list,
-  .albums-list,
-  .songs-list {
-    @include transition( (left .4s $easeInOutCubic) );
-  }
-
-  &.artists {
-    .artists-list { left: 0; }
-    .albums-list { left: 100%; }
-    .songs-list { left: 200%; }
-  }
-  &.albums {
-    .artists-list { left: -100%; }
-    .albums-list { left: 0%; }
-    .songs-list { left: 100%; }
-  }
-  &.songs {
-    .artists-list { left: -200%; }
-    .albums-list { left: -100%; }
-    .songs-list { left: 0%; }
-  }
 }
+
+@-webkit-keyframes button-show-next {
+  from { opacity: 0; -webkit-transform: translateX(100%); }
+  to   { opacity: 1; -webkit-transform: translateX(0);    }
+}
+@-webkit-keyframes button-hide-next {
+  from { opacity: 1; -webkit-transform: translateX(0); }
+  to   { opacity: 0; -webkit-transform: translateX(-100%);}
+}
+
 
 $starSize: 25px;
 $gap: 5px;
